@@ -8,8 +8,11 @@ import thunk from 'redux-thunk';
 import {searchReducer} from './reducers/search';
 import {Provider} from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-const store = createStore(searchReducer, applyMiddleware(thunk));
+const store = createStore(searchReducer, composeWithDevTools(
+  applyMiddleware(thunk)
+));
 
 ReactDOM.render(
 <BrowserRouter>

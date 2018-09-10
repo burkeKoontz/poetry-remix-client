@@ -4,6 +4,7 @@ import { fetch } from '../actions/search';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import NavBar from './NavBar';
 import SearchResults from './SearchResults';
+import SearchForm from './SearchForm';
 
 class Home extends React.Component {
 
@@ -11,6 +12,7 @@ class Home extends React.Component {
     return (
       <div>
         <NavBar />
+        <SearchForm />
         <SearchResults />
       </div>
     );

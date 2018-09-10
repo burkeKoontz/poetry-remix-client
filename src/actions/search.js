@@ -25,9 +25,17 @@ export function fetchPoemsError(err) {
   };
 }
 
-export const fetchPoems = () => dispatch => {
+export const SET_SEARCHTERM = 'SET_SEARCHTERM';
+export function setSearchTerm(searchTerm) {
+  return {
+    type: SET_SEARCHTERM,
+    searchTerm
+  };
+}
+
+export const fetchPoems = (searchBy, searchTerm) => dispatch => {
   dispatch(fetchPoemsRequest());
-   fetch(`${API_BASE_URL}/poems`)
+   fetch(`${API_BASE_URL}/poems?${searchBy}=${searchTerm}`)
     .then(res => {
       if (!res.ok) {
           return Promise.reject(res.statusText);

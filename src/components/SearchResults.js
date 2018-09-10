@@ -5,20 +5,19 @@ import {fetchPoems} from '../actions/search';
 
 class SearchResults extends React.Component {
 
-  componentDidMount() {
-    this.props.dispatch(fetchPoems());
-  }
-
   render() {
-    console.log(this.props.poems);
-    const poemsHtml = this.props.poems.map(poem => {
-      console.log(poem);
-      return (<li>Title: {poem.title}, Author: {poem.author}</li>);
-    });
-
-    return (
-      <ul>{poemsHtml}</ul>
-    );
+    if (this.props.poems.length !== 0) {
+      const poemsHtml = this.props.poems.map(poem => {
+        console.log(poem);
+        return (<li>Title: {poem.title}, Author: {poem.author}</li>);
+      });
+  
+      return (
+        <ul>{poemsHtml}</ul>
+      );
+    } else {
+   return (<p>Search for poems</p>);
+    }
   }
 }
 
