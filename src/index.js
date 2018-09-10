@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CheeseList from './components/cheese-list';
+import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
-import {cheeseReducer} from './reducers/cheese';
+import {searchReducer} from './reducers/search';
 import {Provider} from 'react-redux';
+import { BrowserRouter } from 'react-router-dom'
 
-const store = createStore(cheeseReducer, applyMiddleware(thunk));
+const store = createStore(searchReducer, applyMiddleware(thunk));
 
-ReactDOM.render(<Provider store={store}>
-<CheeseList />
-</Provider>, document.getElementById('root'));
+ReactDOM.render(
+<BrowserRouter>
+  <Provider store={store}>
+    <App />
+  </Provider>
+</BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();
