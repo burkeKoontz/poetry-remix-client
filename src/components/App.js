@@ -1,21 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Home from './Home';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Board from './Board';
 
 class App extends React.Component {
 
   render() {
-   
-    return (
-      <div><Route path="/" component={Home}/></div>
-    );
+   if (this.props.currentPoem) {
+     return (
+       <Board />
+     );
+   } else {
+     return (
+       <Home />
+     );
+   }
+ 
   }
 }
 
 const mapStateToProps = state => {
   return {
-    poems: state.poems
+    currentPoem: state.poem.currentPoem
   }
 }
 

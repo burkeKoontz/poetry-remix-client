@@ -3,21 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import {createStore, applyMiddleware} from 'redux'
-import thunk from 'redux-thunk';
-import {searchReducer} from './reducers/search';
 import {Provider} from 'react-redux';
-import { BrowserRouter } from 'react-router-dom'
-import {composeWithDevTools} from 'redux-devtools-extension';
-
-const store = createStore(searchReducer, composeWithDevTools(
-  applyMiddleware(thunk)
-));
+import {store} from './store';
 
 ReactDOM.render(
-<BrowserRouter>
   <Provider store={store}>
     <App />
   </Provider>
-</BrowserRouter>, document.getElementById('root'));
+, document.getElementById('root'));
 registerServiceWorker();

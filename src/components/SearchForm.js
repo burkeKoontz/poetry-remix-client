@@ -1,26 +1,37 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Home from './Home';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import { setSearchTerm } from '../actions/search';
-import Form from './Form';
+import { fetchPoems } from '../actions/search';
 
 class SearchForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {authorSearchTerm: '', titleSearchTerm: ''}
+  }
+
+  setSearch(e, searchTerms) {
+    e.preventDefault();
+    this.props.dispatch(fetchPoems(searchTerms))
+  }
+
+  setInput(type, input) {
+    this.setState({...this.state, [type] : input})
+  }
 
   render() {
     return (
-      <div>
-        <Form label={'Search by title'} id={'byTitle'} />
-        <Form label={'Search by author'} id={'byAuthor'} />
-      </div>
+        <form onSubmit={(e) => this.setSearch(e, this.state)}>
+          <label htmlFor='byTitle'>Search by title</label>
+          <input onChange={(e) => this.setInput('titleSearchTerm', e.target.value)} id='byTitle'></input>
+          <p>AND/OR</p>
+          <label htmlFor='byAuthor'>Search by author</label>
+          <input onChange={(e) => this.setInput('authorSearchTerm', e.target.value)} id='byAuthor'></input>
+          <div>
+            <button>Search</button>
+          </div>
+        </form>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    poems: state.poems
-  }
-}
-
-export default connect(mapStateToProps)(SearchForm);
+export default connect()(SearchForm);

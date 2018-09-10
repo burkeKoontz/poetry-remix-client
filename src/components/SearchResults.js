@@ -1,17 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import {fetchPoems} from '../actions/search';
+import {setCurrentPoem} from '../actions/poem';
+import PoemResult from './PoemResult';
 
 class SearchResults extends React.Component {
 
   render() {
+    if (this.props.poems.status === 404 ) {
+      return (<p>Not found. Try searching again</p>);
+    } 
     if (this.props.poems.length !== 0) {
+      console.log(this.props);
       const poemsHtml = this.props.poems.map(poem => {
-        console.log(poem);
-        return (<li>Title: {poem.title}, Author: {poem.author}</li>);
+        return <li><PoemResult title={poem.title} author={poem.author} poem={poem} /></li>;
       });
-  
+    console.log(poemsHtml);
       return (
         <ul>{poemsHtml}</ul>
       );
@@ -23,7 +26,7 @@ class SearchResults extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    poems: state.poems
+    poems: state.search.poems
   }
 }
 
