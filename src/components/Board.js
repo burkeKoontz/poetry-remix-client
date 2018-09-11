@@ -1,8 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NavBar from './NavBar';
+import DragAndDrop from './DragAndDrop';
+import Magnet from './Magnet'
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     const linesHTML = this.props.currentPoem.lines.map(line => {
@@ -13,6 +18,7 @@ class Board extends React.Component {
       <div>
         <NavBar />
       <p>{linesHTML}</p>
+      <DragAndDrop lines={this.props.currentPoem.lines} hideSourceOnDrag={true}/>
       </div>
     );
   }

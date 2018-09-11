@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Home from './Home';
 import Board from './Board';
+import HTML5Backend from 'react-dnd-html5-backend'
+import { DragDropContext } from 'react-dnd'
 
 class App extends React.Component {
 
@@ -25,4 +27,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default DragDropContext(HTML5Backend)(connect(mapStateToProps)(App));
