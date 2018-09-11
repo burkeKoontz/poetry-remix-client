@@ -1,12 +1,12 @@
 import * as actions from '../actions/search';
-import SearchForm from '../components/SearchForm';
 
 const initialState = {
     poems: [],
     loading: false,
     error: null,
     searchTerm: null,
-    searchFormExtended: false
+    searchFormExtended: false,
+    searching: false
 }
 
 export const searchReducer = (state=initialState, action) => {
@@ -19,9 +19,10 @@ export const searchReducer = (state=initialState, action) => {
       return {...state, loading: false, error: action.error};
     case actions.SET_SEARCHTERM: 
       return {...state, searchTerm: action.searchTerm};
+    case actions.TOGGLE_SEARCHING: 
+      return {...state, searching: state.searching ? false : true};
     case actions.TOGGLE_SEARCHFORM:
-      const toggled = state.searchFormExtended ? false : true;
-      return {...state, searchFormExtended: toggled};
+      return {...state, searchFormExtended: state.searchFormExtended ? false : true};
     default: 
       return state;
   }

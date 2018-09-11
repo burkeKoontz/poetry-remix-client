@@ -5,12 +5,12 @@ import {setCurrentPoem} from '../actions/poem';
 class PoemResult extends React.Component {
 
   setCurrentPoem(poem) {
-    const poemId = 1; //change this so that a poemID will belong to a specific user
+    // const poemId = 1; //change this so that a poemID will belong to a specific user
     this.props.dispatch(setCurrentPoem(poem));
   }
 
   render() {
-    return (<li>Title: {this.props.title}, Author: {this.props.author}<button onClick={() => this.setCurrentPoem(this.props.poem)}>Remix this</button></li>);
+    return (<div>Title: {this.props.title}, Author: {this.props.author}<button onClick={() => this.setCurrentPoem(this.props.poem)}>Remix this</button></div>);
   }
 }
 

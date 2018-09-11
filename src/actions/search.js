@@ -2,6 +2,13 @@
 
 import {API_BASE_URL} from '../config';
 
+export const TOGGLE_SEARCHING = 'TOGGLE_SEARCHING';
+export function toggleSearching() {
+  return {
+    type: TOGGLE_SEARCHING
+  };
+}
+
 export const FETCH_POEMS_REQUEST = 'FETCH_POEMS_REQUEST';
 export function fetchPoemsRequest() {
   return {
@@ -25,7 +32,7 @@ export function fetchPoemsError(err) {
   };
 }
 
-export const TOGGLE_SEARCHFORM = TOGGLE_SEARCHFORM;
+export const TOGGLE_SEARCHFORM = 'TOGGLE_SEARCHFORM';
 export function toggleSearchForm() {
   return {
     type: TOGGLE_SEARCHFORM,
@@ -40,13 +47,13 @@ export function setSearchTerm(searchTerm) {
   };
 }
 
-export const fetchPoems = (searchTerms) => dispatch => {
+export const fetchPoemsFromAPI = (searchTerms) => dispatch => {
   console.log(searchTerms);
   const authorSearchTerm = searchTerms.authorSearchTerm;
   const titleSearchTerm = searchTerms.titleSearchTerm;
 
   dispatch(fetchPoemsRequest());
-   fetch(`${API_BASE_URL}/poems?authorSearchTerm=${authorSearchTerm}&titleSearchTerm=${titleSearchTerm}`)
+   fetch(`${API_BASE_URL}/db/poems?authorSearchTerm=${authorSearchTerm}&titleSearchTerm=${titleSearchTerm}`)
     .then(res => {
       if (!res.ok) {
           return Promise.reject(res.statusText);

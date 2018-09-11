@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { clearCurrentPoem } from '../actions/poem';
+import { toggleSearching } from '../actions/search';
 
 class NavBar extends React.Component {
   goHome() {
+    this.props.dispatch(toggleSearching());
     this.props.dispatch(clearCurrentPoem());
   }
 

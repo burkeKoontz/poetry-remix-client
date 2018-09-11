@@ -1,10 +1,9 @@
 import {
 	DropTarget,
-	DragDropContext,
-	ConnectDropTarget,
 	DropTargetMonitor,
-	XYCoord,
-} from 'react-dnd'
+} from 'react-dnd';
+// XYCoord,	DragDropContext,
+// ConnectDropTarget,
 import React from 'react';
 import {connect} from 'react-redux';
 import './DragAndDrop.css';

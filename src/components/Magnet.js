@@ -1,4 +1,5 @@
-import { DragSource, ConnectDragSource } from 'react-dnd'
+import { DragSource} from 'react-dnd'
+// , ConnectDragSource 
 import React from 'react';
 import './Magnet.css'
 

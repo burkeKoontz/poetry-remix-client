@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Home from './Home';
-import { fetchPoems } from '../actions/search';
+import {fetchPoemsFromAPI, toggleSearching } from '../actions/search';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -11,7 +10,8 @@ class SearchForm extends React.Component {
 
   setSearch(e, searchTerms) {
     e.preventDefault();
-    this.props.dispatch(fetchPoems(searchTerms))
+    this.props.dispatch(toggleSearching());
+    this.props.dispatch(fetchPoemsFromAPI(searchTerms));
   }
 
   setInput(type, input) {
