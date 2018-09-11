@@ -30,21 +30,63 @@ export function savePoemSuccess() {
 }
 
 export const SAVE_POEM_ERROR = 'SAVE_POEM_ERROR';
-export function savePoemError() {
+export function savePoemError(err) {
   return {
-    type: SAVE_POEM_ERROR
+    type: SAVE_POEM_ERROR,
+    err
   };
 }
 
-export const savePoemToDB = (stateOfPoem) => dispatch => {
-  const data = 'some data';
+export const FETCH_POEM_FROM_DB_REQUEST = 'FETCH_POEM_FROM_DB_REQUEST';
+export function fetchPoemFromDBRequest() {
+  return {
+    type: FETCH_POEM_FROM_DB_REQUEST
+  };
+}
+
+export const FETCH_POEM_FROM_DB_SUCCESS = 'FETCH_POEM_FROM_DB_SUCCESS';
+export function fetchPoemFromDBSuccess(poems) {
+  return {
+    type: FETCH_POEM_FROM_DB_SUCCESS,
+    poems
+  };
+}
+
+export const FETCH_POEM_FROM_DB_ERROR = 'FETCH_POEM_FROM_DB_ERROR';
+export function fetchPoemFromDBError(err) {
+  return {
+    type: FETCH_POEM_FROM_DB_ERROR,
+    err
+  };
+}
+
+export const fetchPoemsFromDB = () => dispatch => {
+  dispatch(fetchPoemFromDBRequest());
+   fetch(`${API_BASE_URL}/poems`)
+    .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then((poems) =>{
+      dispatch(fetchPoemFromDBSuccess(poems));
+    })
+    .catch(err => {
+      dispatch(fetchPoemFromDBError(err));
+    })
+};
+
+
+
+export const savePoemToDB = (newPoem) => dispatch => {
   dispatch(savePoemRequest());
    fetch(`${API_BASE_URL}/poems`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     headers: {
         "Content-Type": "application/json; charset=utf-8",
     },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
+    body: JSON.stringify(newPoem), // body data type must match "Content-Type" header
 })
     .then(res => {
       if (!res.ok) {
