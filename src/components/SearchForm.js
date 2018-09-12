@@ -36,14 +36,14 @@ class SearchForm extends React.Component {
               <button>Search</button>
             </div>
           </form>
-          <button onClick={() => this.toggleSearchForm()}>Close the form</button>
+          <button onClick={() => this.toggleSearchForm()}>Close search form</button>
         </div>
     );
   } else {
     return (
       <div>
         <p>Search for your favorite public domain poetry!</p>
-        <button onClick={() => this.toggleSearchForm()}>Open the form</button>
+        <button onClick={() => this.toggleSearchForm()}>Open seach form</button>
       </div>    
     );
   }

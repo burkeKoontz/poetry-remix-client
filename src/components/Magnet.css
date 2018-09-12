@@ -5,3 +5,12 @@
 	padding: 0.5rem 1rem;
   cursor: move;
 }
+
+.delete{
+  width: 10px;
+	height: 10px;
+	position: absolute;
+  top: 0;
+	right: 0;
+	font-size: 7px;
+}

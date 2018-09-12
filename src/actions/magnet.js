@@ -10,8 +10,16 @@ export function addMagnet(id, magnet) {
 export const CHANGE_MAGNET_LOCATION = 'CHANGE_MAGNET_LOCATION';
 export function changeMagnetLocation(id, magnet) {
   return {
-    type: ADD_MAGNET,
+    type: CHANGE_MAGNET_LOCATION,
     id,
     magnet
+  };
+}
+
+export const DELETE_MAGNET = 'DELETE_MAGNET';
+export function deleteMagnet(id) {
+  return {
+    type: DELETE_MAGNET,
+    id,
   };
 }

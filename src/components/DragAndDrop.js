@@ -67,6 +67,7 @@ class DragAndDrop extends React.Component {
   
   render() {
     const { hideSourceOnDrag, connectDropTarget, magnets } = this.props;
+    console.log(this.props.magnets);
 
     return (
     connectDropTarget(
@@ -79,9 +80,11 @@ class DragAndDrop extends React.Component {
               id={key}
               left={left}
               top={top}
+              
               hideSourceOnDrag={hideSourceOnDrag}
+
             >
-              {title}
+            {title}
             </Magnet>
           );
         })}

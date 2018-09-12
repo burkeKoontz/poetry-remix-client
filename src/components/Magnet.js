@@ -1,7 +1,9 @@
 import { DragSource} from 'react-dnd'
+import {connect} from 'react-redux';
 // , ConnectDragSource 
 import React from 'react';
-import './Magnet.css'
+import './Magnet.css';
+import {deleteMagnet} from '../actions/magnet';
 
 function collect(connect, monitor) {
   return {
@@ -19,6 +21,11 @@ const magnetSource = {
 
 class Magnet extends React.Component{
 
+	deleteMagnet() {
+		const idToDelete = this.props.id;
+		this.props.dispatch(deleteMagnet(idToDelete));
+	}
+
   render() {
 		const {
 			hideSourceOnDrag,
@@ -26,7 +33,7 @@ class Magnet extends React.Component{
 			top,
 			connectDragSource,
 			isDragging,
-			children,
+			children
 		} = this.props
 		if (isDragging && hideSourceOnDrag) {
 			return null
@@ -34,10 +41,11 @@ class Magnet extends React.Component{
 
 		return (
 			connectDragSource &&
-			connectDragSource(<div className="magnet" style={{left, top}}>{children}</div>)
+			connectDragSource(<div className="magnet" style={{left, top}}>{children}<button className="delete" onClick={()=> this.deleteMagnet()}>X</button></div>)
 		)
 	}
 }
 
 
-export default DragSource('magnet', magnetSource, collect)(Magnet);
+export default DragSource('magnet', magnetSource, collect)((connect()(Magnet)));
+
