@@ -5,6 +5,7 @@ import {setCurrentPoem} from '../actions/poem';
 class SearchResult extends React.Component {
 
   setCurrentPoem(poem) {
+    console.log(poem);
     // const poemId = 1; //change this so that a poemID will belong to a specific user
     this.props.dispatch(setCurrentPoem(poem));
   }

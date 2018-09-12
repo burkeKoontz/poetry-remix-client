@@ -8,16 +8,18 @@ class FinishedPoem extends React.Component {
   render() {
     console.log(this.props.poem);
     const { magnets } = this.props.poem;
+    console.log(magnets);
     return (
       <div>
         <p>Title:</p>
         <div className='Cell'>
-          {Object.keys(magnets).map(key => {
-            const { left, top, title } = magnets[key]
+          {magnets.map((magnet, index) => {
+            const { left, top, title } = magnets[index];
+            console.log(left);
             return (
               <Magnet
-                key={key}
-                id={key}
+                key={magnet._id}
+                id={magnet._id}
                 left={left}
                 top={top}
               >
