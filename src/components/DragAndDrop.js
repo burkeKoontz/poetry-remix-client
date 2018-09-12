@@ -40,9 +40,6 @@ class DragAndDrop extends React.Component {
     this.createMagnets(this.props.lines);
   }
 
-  // the next line of magnets should have their top location changed
-  // have one big array of words
-
   createMagnets(lines) {
     const keyArray = Object.keys(lines);
     const arrayofWords = []

@@ -1,4 +1,4 @@
-import {composeWithDevTools} from 'redux-devtools-extension';
+// import {composeWithDevTools} from 'redux-devtools-extension';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {searchReducer} from './reducers/search';
 import {poemReducer} from './reducers/poem';
@@ -11,6 +11,11 @@ const rootReducer = combineReducers({
   magnets: magnetReducer
 });
 
-export const store = createStore(rootReducer, composeWithDevTools(
+// for dev
+// export const store = createStore(rootReducer, composeWithDevTools(
+//   applyMiddleware(thunk)
+// ));
+
+export const store = createStore(rootReducer, 
   applyMiddleware(thunk)
-));
+);
