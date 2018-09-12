@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import NavBar from './NavBar';
 import SearchResults from './SearchResults';
 import SearchForm from './SearchForm';
-import CreatedPoems from './CreatedPoems';
+import Poems from './Poems';
 import {fetchPoemsFromDB} from '../actions/poem'
 
 class Home extends React.Component {
@@ -26,7 +26,7 @@ class Home extends React.Component {
       <div>
         <NavBar />
         <SearchForm />
-        <CreatedPoems />
+        <Poems />
       </div>
     );
     } else {
@@ -43,7 +43,7 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     searching: state.search.searching,
-    poems: state.search.poems
+    poems: state.poem.poems
   }
 }
 

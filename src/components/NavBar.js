@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { clearCurrentPoem } from '../actions/poem';
-import { toggleSearching } from '../actions/search';
+import { clearCurrentPoem, closePoem } from '../actions/poem';
+import { clearSearching } from '../actions/search';
 
 class NavBar extends React.Component {
   goHome() {
-    this.props.dispatch(toggleSearching());
+    this.props.dispatch(clearSearching());
     this.props.dispatch(clearCurrentPoem());
+    this.props.dispatch(closePoem());
   }
 
   render() {

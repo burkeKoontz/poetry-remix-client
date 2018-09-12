@@ -19,8 +19,10 @@ export const searchReducer = (state=initialState, action) => {
       return {...state, loading: false, error: action.error};
     case actions.SET_SEARCHTERM: 
       return {...state, searchTerm: action.searchTerm};
-    case actions.TOGGLE_SEARCHING: 
-      return {...state, searching: state.searching ? false : true};
+    case actions.CLEAR_SEARCHING: 
+      return {...state, searching: false};
+    case actions.START_SEARCHING: 
+      return {...state, searching: true};
     case actions.TOGGLE_SEARCHFORM:
       return {...state, searchFormExtended: state.searchFormExtended ? false : true};
     default: 

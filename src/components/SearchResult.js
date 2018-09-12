@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {setCurrentPoem} from '../actions/poem';
 
-class PoemResult extends React.Component {
+class SearchResult extends React.Component {
 
   setCurrentPoem(poem) {
     // const poemId = 1; //change this so that a poemID will belong to a specific user
@@ -20,4 +20,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(PoemResult);
+export default connect(mapStateToProps)(SearchResult);

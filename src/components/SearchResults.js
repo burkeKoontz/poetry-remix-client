@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PoemResult from './PoemResult';
+import SearchResult from './SearchResult';
 
 class SearchResults extends React.Component {
 
   render() {
     if (this.props.poems.status === 404 ) {
-      return (<p>Not found. Try searching again</p>);
+      return (<p>Not found. Try searching for something else</p>);
     } else if (this.props.poems.length !== 0) {
         const poemsHtml = this.props.poems.map((poem, index) => {
-        return <li key={index}><PoemResult title={poem.title} author={poem.author} poem={poem} /></li>;
+        return <li key={index}><SearchResult title={poem.title} author={poem.author} poem={poem} /></li>;
       });
       return (
         <ul>{poemsHtml}</ul>

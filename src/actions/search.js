@@ -2,10 +2,17 @@
 
 import {API_BASE_URL} from '../config';
 
-export const TOGGLE_SEARCHING = 'TOGGLE_SEARCHING';
-export function toggleSearching() {
+export const CLEAR_SEARCHING = 'CLEAR_SEARCHING';
+export function clearSearching() {
   return {
-    type: TOGGLE_SEARCHING
+    type: CLEAR_SEARCHING
+  };
+}
+
+export const START_SEARCHING = 'START_SEARCHING';
+export function startSearching() {
+  return {
+    type: START_SEARCHING
   };
 }
 

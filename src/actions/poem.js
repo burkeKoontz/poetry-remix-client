@@ -8,10 +8,25 @@ export function setCurrentPoem(poem) {
   };
 }
 
-export const CLEAR_CURRENT_POEM = 'SET_CURRENT_POEM';
-export function clearCurrentPoem(poem) {
+export const CLEAR_CURRENT_POEM = 'CLEAR_CURRENT_POEM';
+export function clearCurrentPoem() {
   return {
     type: CLEAR_CURRENT_POEM
+  };
+}
+
+export const OPEN_POEM = 'OPEN_POEM';
+export function openPoem(poem) {
+  return {
+    type: OPEN_POEM,
+    poem
+  };
+}
+
+export const CLOSE_POEM = 'CLOSE_POEM';
+export function closePoem() {
+  return {
+    type: CLOSE_POEM
   };
 }
 

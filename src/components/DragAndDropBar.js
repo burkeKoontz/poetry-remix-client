@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { savePoemToDB } from '../actions/poem';
 
-class RemixerBar extends React.Component {
+class DragAndDropBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {title: ''}
@@ -38,4 +38,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(RemixerBar);
+export default connect(mapStateToProps)(DragAndDropBar);

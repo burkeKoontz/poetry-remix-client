@@ -1,16 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Home from './Home';
-import Board from './Board';
+import EditBoard from './EditBoard';
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
 
 class App extends React.Component {
 
   render() {
-   if (this.props.currentPoem) {
+   if (this.props.editingPoem) {
      return (
-       <Board />
+       <EditBoard />
      );
    } else {
      return (
@@ -23,7 +23,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentPoem: state.poem.currentPoem
+    editingPoem: state.poem.editingPoem
   }
 }
 

@@ -1,0 +1,14 @@
+.Cell {
+  position: relative;
+  width: 800px;
+	height: 600px;
+	border: 1px solid black;
+}
+
+.magnet{
+  position: absolute;
+	border: 1px dashed gray;
+	background-color: white;
+	padding: 0.5rem 1rem;
+  cursor: move;
+}

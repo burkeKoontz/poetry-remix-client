@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPoemsFromAPI, toggleSearching } from '../actions/search';
+import {fetchPoemsFromAPI, startSearching, toggleSearchForm } from '../actions/search';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class SearchForm extends React.Component {
 
   setSearch(e, searchTerms) {
     e.preventDefault();
-    this.props.dispatch(toggleSearching());
+    this.props.dispatch(startSearching());
     this.props.dispatch(fetchPoemsFromAPI(searchTerms));
   }
 
@@ -18,20 +18,42 @@ class SearchForm extends React.Component {
     this.setState({...this.state, [type] : input})
   }
 
+  toggleSearchForm() {
+    this.props.dispatch(toggleSearchForm());
+  }
+
   render() {
+    if (this.props.searchFormExtended) {
     return (
-        <form onSubmit={(e) => this.setSearch(e, this.state)}>
-          <label htmlFor='byTitle'>Search by title</label>
-          <input onChange={(e) => this.setInput('titleSearchTerm', e.target.value)} id='byTitle'></input>
-          <p>AND/OR</p>
-          <label htmlFor='byAuthor'>Search by author</label>
-          <input onChange={(e) => this.setInput('authorSearchTerm', e.target.value)} id='byAuthor'></input>
-          <div>
-            <button>Search</button>
-          </div>
-        </form>
+        <div>
+          <form onSubmit={(e) => this.setSearch(e, this.state)}>
+            <label htmlFor='byTitle'>Search by title</label>
+            <input onChange={(e) => this.setInput('titleSearchTerm', e.target.value)} id='byTitle'></input>
+            <p>AND/OR</p>
+            <label htmlFor='byAuthor'>Search by author</label>
+            <input onChange={(e) => this.setInput('authorSearchTerm', e.target.value)} id='byAuthor'></input>
+            <div>
+              <button>Search</button>
+            </div>
+          </form>
+          <button onClick={() => this.toggleSearchForm()}>Close the form</button>
+        </div>
     );
+  } else {
+    return (
+      <div>
+        <p>Search for your favorite public domain poetry!</p>
+        <button onClick={() => this.toggleSearchForm()}>Open the form</button>
+      </div>    
+    );
+  }
   }
 }
 
-export default connect()(SearchForm);
+const mapStateToProps = state => {
+  return {
+    searchFormExtended: state.search.searchFormExtended
+  }
+}
+
+export default connect(mapStateToProps)(SearchForm);
