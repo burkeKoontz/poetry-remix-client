@@ -7,6 +7,8 @@ import { Route, withRouter} from 'react-router-dom';
 import { DragDropContext } from 'react-dnd';
 import FinishedPoem from './FinishedPoem';
 import NavBar from './NavBar';
+import SignUp from './SignUp';
+import LogIn from './LogIn';
 
 class App extends React.Component {
 
@@ -14,6 +16,8 @@ class App extends React.Component {
      return (<div>
       <Route path="/" component={NavBar} />
       <Route exact path="/" component={Home} />
+      <Route exact path="/sign-up" component={SignUp} />
+      <Route exact path="/log-in" component={LogIn} />
       <Route exact path="/board" component={EditBoard} />
       <Route exact path="/poems/:id" component={FinishedPoem} />
     </div>);

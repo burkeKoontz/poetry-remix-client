@@ -12,16 +12,24 @@ class NavBar extends React.Component {
   }
 
   render() {
+    console.log(this.props.token)
     return (
       <ul>
         <li><Link onClick={() => this.goHome()} to={`/`} >Homepage</Link></li>
         <li>Your poems</li>
-        <li>testUser: User</li>
-        <li>Logout</li>
+        <li>User: {`${this.props.token}`}</li>
+        <li><Link to={`/sign-up`} >Sign-up</Link></li>
+        <li><Link to={`/log-in`} >Log-in</Link></li>
       </ul>
     );
   }
 
 }
 
-export default connect()(NavBar);
+const mapStateToProps = state => {
+  return {
+    token: state.user.token
+  }
+}
+
+export default connect(mapStateToProps)(NavBar);
