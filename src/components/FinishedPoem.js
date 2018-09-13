@@ -17,6 +17,7 @@ class FinishedPoem extends React.Component {
   render() {
     if (this.props.poem) {
       const { magnets } = this.props.poem;
+      console.log(CLIENT_BASE_URL);
       return (
         <div>
           <p>Title: {this.props.poem.title}</p>
