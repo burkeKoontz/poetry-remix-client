@@ -23,6 +23,12 @@ export const poemReducer = (state=initialState, action) => {
     case actions.FETCH_POEM_FROM_DB_ERROR:
       return {...state, loading: false, error: action.error};
     case actions.FETCH_POEM_FROM_DB_SUCCESS:
+      return {...state, openPoem: action.poem, loading: false};
+    case actions.FETCH_POEMS_FROM_DB_REQUEST:
+      return {...state, loading: true};
+    case actions.FETCH_POEMS_FROM_DB_ERROR:
+      return {...state, loading: false, error: action.error};
+    case actions.FETCH_POEMS_FROM_DB_SUCCESS:
       return {...state, poems: action.poems, loading: false};
     default: 
       return state;

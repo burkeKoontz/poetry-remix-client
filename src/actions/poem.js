@@ -24,9 +24,10 @@ export function openPoem(poem) {
 }
 
 export const CLOSE_POEM = 'CLOSE_POEM';
-export function closePoem() {
+export function closePoem(poem) {
   return {
-    type: CLOSE_POEM
+    type: CLOSE_POEM,
+    poem
   };
 }
 
@@ -52,6 +53,29 @@ export function savePoemError(err) {
   };
 }
 
+export const FETCH_POEMS_FROM_DB_REQUEST = 'FETCH_POEMS_FROM_DB_REQUEST';
+export function fetchPoemsFromDBRequest() {
+  return {
+    type: FETCH_POEMS_FROM_DB_REQUEST
+  };
+}
+
+export const FETCH_POEMS_FROM_DB_SUCCESS = 'FETCH_POEMS_FROM_DB_SUCCESS';
+export function fetchPoemsFromDBSuccess(poems) {
+  return {
+    type: FETCH_POEMS_FROM_DB_SUCCESS,
+    poems
+  };
+}
+
+export const FETCH_POEMS_FROM_DB_ERROR = 'FETCH_POEMS_FROM_DB_ERROR';
+export function fetchPoemsFromDBError(err) {
+  return {
+    type: FETCH_POEMS_FROM_DB_ERROR,
+    err
+  };
+}
+
 export const FETCH_POEM_FROM_DB_REQUEST = 'FETCH_POEM_FROM_DB_REQUEST';
 export function fetchPoemFromDBRequest() {
   return {
@@ -60,10 +84,10 @@ export function fetchPoemFromDBRequest() {
 }
 
 export const FETCH_POEM_FROM_DB_SUCCESS = 'FETCH_POEM_FROM_DB_SUCCESS';
-export function fetchPoemFromDBSuccess(poems) {
+export function fetchPoemFromDBSuccess(poem) {
   return {
     type: FETCH_POEM_FROM_DB_SUCCESS,
-    poems
+    poem
   };
 }
 
@@ -76,7 +100,7 @@ export function fetchPoemFromDBError(err) {
 }
 
 export const fetchPoemsFromDB = () => dispatch => {
-  dispatch(fetchPoemFromDBRequest());
+  dispatch(fetchPoemsFromDBRequest());
    fetch(`${API_BASE_URL}/poems`)
     .then(res => {
       if (!res.ok) {
@@ -85,7 +109,24 @@ export const fetchPoemsFromDB = () => dispatch => {
       return res.json();
     })
     .then((poems) =>{
-      dispatch(fetchPoemFromDBSuccess(poems));
+      dispatch(fetchPoemsFromDBSuccess(poems));
+    })
+    .catch(err => {
+      dispatch(fetchPoemsFromDBError(err));
+    })
+};
+
+export const fetchPoemByID = (id) => dispatch => {
+  dispatch(fetchPoemFromDBRequest());
+   fetch(`${API_BASE_URL}/poems/${id}`)
+    .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then((poem) =>{
+      dispatch(fetchPoemFromDBSuccess(poem));
     })
     .catch(err => {
       dispatch(fetchPoemFromDBError(err));

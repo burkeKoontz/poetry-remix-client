@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { clearCurrentPoem, closePoem } from '../actions/poem';
+import { clearCurrentPoem, closePoem} from '../actions/poem';
 import { clearSearching } from '../actions/search';
+import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
   goHome() {
@@ -13,7 +14,8 @@ class NavBar extends React.Component {
   render() {
     return (
       <ul>
-        <li onClick={() => this.goHome()} >Homepage</li>
+        <li><Link onClick={() => this.goHome()} to={`/`} >Homepage</Link></li>
+        {/* <li onClick={() => this.goHome()} >Homepage</li> */}
         <li>Your poems</li>
         <li>testUser: User</li>
         <li>Logout</li>

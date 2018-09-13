@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { openPoem } from '../actions/poem';
 import FinishedPoem from './FinishedPoem';
+import { Link } from 'react-router-dom';
 
 class Poems extends React.Component {
 
@@ -14,7 +15,13 @@ class Poems extends React.Component {
       return <FinishedPoem poem={this.props.openPoem} />;
     } else if (this.props.poems.length !== 0) {
         const poemsHtml = this.props.poems.map((poem, index) => {
-        return <li key={index}><p>Title: {poem.title}</p><button onClick={() => this.seePoem(poem)}>Check out this poem</button></li>;
+          console.log(poem);
+        return (
+          <li key={index}>
+          <p>{`Title: ${poem.title}`}</p>
+          <Link onClick={() => this.seePoem(poem)} to={`/poems/${poem.id}`} >Check out this poem</Link>
+          {/* <button onClick={() => this.seePoem(poem)}>Check out this poem</button> */}
+        </li>);
       });
       return (
         <ul>{poemsHtml}</ul>

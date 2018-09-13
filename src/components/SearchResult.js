@@ -13,8 +13,8 @@ class SearchResult extends React.Component {
 
   render() {
     return (<div>Title: {this.props.title}, Author: {this.props.author}
-    <Link onClick={() => this.setCurrentPoem(this.props.poem)} to={`/board`} >Remix this</Link>
-    {/* <button onClick={() => this.setCurrentPoem(this.props.poem)}>Remix this</button> */}
+    {/* <Link onClick={() => this.setCurrentPoem(this.props.poem)} to={`/board`} >Remix this</Link> */}
+    <button onClick={() => this.setCurrentPoem(this.props.poem)}>Remix this</button>
     </div>);
   }
 }
