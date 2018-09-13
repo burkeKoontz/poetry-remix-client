@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Magnet from './Magnet';
 import { fetchPoemByID } from '../actions/poem';
+import {CLIENT_BASE_URL} from '../config';
 
 class FinishedPoem extends React.Component {
 
@@ -19,7 +20,7 @@ class FinishedPoem extends React.Component {
       return (
         <div>
           <p>Title: {this.props.poem.title}</p>
-          <p>Share this poem with your friends! Just pass them this link: {`http://localhost:3000/poems/${this.props.poem.id}`}</p>
+          <p>Share this poem with your friends! Just pass them this link: {`${CLIENT_BASE_URL}/poems/${this.props.poem.id}`}</p>
           <div className='Cell'>
             {magnets.map((magnet, index) => {
               const { left, top, title } = magnets[index];
