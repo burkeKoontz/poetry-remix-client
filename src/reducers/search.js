@@ -20,7 +20,7 @@ export const searchReducer = (state=initialState, action) => {
     case actions.SET_SEARCHTERM: 
       return {...state, searchTerm: action.searchTerm};
     case actions.CLEAR_SEARCHING: 
-      return {...state, searching: false};
+      return {...state, searching: false, poems: [], searchFormExtended: false};
     case actions.START_SEARCHING: 
       return {...state, searching: true};
     case actions.TOGGLE_SEARCHFORM:

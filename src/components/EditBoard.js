@@ -9,7 +9,6 @@ class EditBoard extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
         <DragAndDropBar />
         <DragAndDrop lines={this.props.editingPoem.lines} hideSourceOnDrag={true}/>
       </div>

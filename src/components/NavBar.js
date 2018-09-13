@@ -15,7 +15,6 @@ class NavBar extends React.Component {
     return (
       <ul>
         <li><Link onClick={() => this.goHome()} to={`/`} >Homepage</Link></li>
-        {/* <li onClick={() => this.goHome()} >Homepage</li> */}
         <li>Your poems</li>
         <li>testUser: User</li>
         <li>Logout</li>
@@ -24,6 +23,5 @@ class NavBar extends React.Component {
   }
 
 }
-
 
 export default connect()(NavBar);

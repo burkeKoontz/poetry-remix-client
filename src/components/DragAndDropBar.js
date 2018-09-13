@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { savePoemToDB } from '../actions/poem';
+import { savePoemToDB, clearCurrentPoem } from '../actions/poem';
 import {addMagnet} from '../actions/magnet';
+import { clearSearching } from '../actions/search';
 
 class DragAndDropBar extends React.Component {
   constructor(props) {
@@ -16,7 +17,9 @@ class DragAndDropBar extends React.Component {
     console.log(title);
     console.log(magnets);
     const newPoem = {title, magnets};
-    this.props.dispatch(savePoemToDB(newPoem))
+    this.props.dispatch(savePoemToDB(newPoem));
+    this.props.dispatch(clearCurrentPoem());
+    this.props.dispatch(clearSearching());
   }
 
   addMagnet(e) {

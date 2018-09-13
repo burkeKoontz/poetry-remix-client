@@ -1,11 +1,11 @@
 import * as actions from '../actions/poem';
 
 const initialState = {
-    editingPoem : null,
+    editingPoem : null, // for making/editing a particular poem
     loading : false,
     error : null,
-    poems : [],
-    openPoem : null
+    poems : [], // list of poems on db
+    openPoem : null // for looking at a particular poem (non-editable) 
 }
 
 export const poemReducer = (state=initialState, action) => {

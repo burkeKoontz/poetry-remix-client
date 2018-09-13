@@ -7,17 +7,13 @@ import {CLIENT_BASE_URL} from '../config';
 class FinishedPoem extends React.Component {
 
   componentWillMount() {
-    if (this.props.match) {
-      const id = this.props.match.params.id;
-      console.log(id);
-      this.props.dispatch(fetchPoemByID(id));
-    }
+    const id = this.props.match.params.id;
+    this.props.dispatch(fetchPoemByID(id));
   }
 
   render() {
     if (this.props.poem) {
       const { magnets } = this.props.poem;
-      console.log(CLIENT_BASE_URL);
       return (
         <div>
           <p>Title: {this.props.poem.title}</p>
@@ -41,7 +37,7 @@ class FinishedPoem extends React.Component {
         </div>
       );
     } else {
-      return <p>Loading or not in use - needs fixing</p>
+      return <p>Loading</p>
     }
 }
 }
