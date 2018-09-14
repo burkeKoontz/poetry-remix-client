@@ -1,4 +1,4 @@
-
+import {SubmissionError} from 'redux-form';
 
 import {API_BASE_URL} from '../config';
 
@@ -27,26 +27,51 @@ export function saveUserToDBError(err) {
 
 export const saveUserToDB = (user) => dispatch => {
   dispatch(saveUserToDBRequest());
-   fetch(`${API_BASE_URL}/users`, {
+   return fetch(`${API_BASE_URL}/users`, {
     method: "POST",
     headers: {
         "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(user),
 })
-    .then(res => {
-      if (!res.ok) {
-          return Promise.reject(res.statusText);
+.then(res => {
+  if (!res.ok) {
+      if (
+          res.headers.has('content-type') &&
+          res.headers
+              .get('content-type')
+              .startsWith('application/json')
+      ) {
+          // It's a nice JSON error returned by us, so decode it
+          return res.json().then(err => Promise.reject(err));
       }
-      return res.json();
-    })
-    .then((user) =>{
-      dispatch(saveUserToDBSuccess(user));
-    })
-    .catch(err => {
-      dispatch(saveUserToDBError(err));
-    })
-};
+      // It's a less informative error returned by express
+      return Promise.reject({
+          code: res.status,
+          message: res.statusText
+      });
+  }
+  return;
+})
+.then(() => dispatch(saveUserToDBSuccess()))
+.catch(err => {
+  const {reason, message, location} = err;
+  // dispatch(saveUserToDBError(err));
+  if (reason === 'ValidationError') {
+      // Convert ValidationErrors into SubmissionErrors for Redux Form
+      return Promise.reject(
+          new SubmissionError({
+              [location]: message
+          })
+      );
+  }
+  return Promise.reject(
+      new SubmissionError({
+          _error: err.message || 'Error submitting message'
+      })
+  );
+});
+}
 
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export function logInRequest() {

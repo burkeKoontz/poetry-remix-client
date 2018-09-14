@@ -4,13 +4,15 @@ import {searchReducer} from './reducers/search';
 import {poemReducer} from './reducers/poem';
 import {magnetReducer} from './reducers/magnets';
 import {userReducer} from './reducers/user';
+import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   search: searchReducer,
   poem: poemReducer,
   magnets: magnetReducer,
-  user: userReducer
+  user: userReducer,
+  form: formReducer
 });
 
 // for dev
