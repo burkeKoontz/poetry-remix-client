@@ -99,6 +99,29 @@ export function fetchPoemFromDBError(err) {
   };
 }
 
+export const FETCH_USER_POEMS_FROM_DB_REQUEST = 'FETCH_USER_POEMS_FROM_DB_REQUEST';
+export function fetchUserPoemFromDBRequest() {
+  return {
+    type: FETCH_USER_POEMS_FROM_DB_REQUEST
+  };
+}
+
+export const FETCH_USER_POEMS_FROM_DB_SUCCESS = 'FETCH_USER_POEMS_FROM_DB_SUCCESS';
+export function fetchUserPoemFromDBSuccess(poems) {
+  return {
+    type: FETCH_USER_POEMS_FROM_DB_SUCCESS,
+    poems
+  };
+}
+
+export const FETCH_USER_POEMS_FROM_DB_ERROR = 'FETCH_USER_POEMS_FROM_DB_ERROR';
+export function fetchUserPoemFromDBError(err) {
+  return {
+    type: FETCH_USER_POEMS_FROM_DB_ERROR,
+    err
+  };
+}
+
 export const fetchPoemsFromDB = () => dispatch => {
   dispatch(fetchPoemsFromDBRequest());
    fetch(`${API_BASE_URL}/poems`)
@@ -113,6 +136,24 @@ export const fetchPoemsFromDB = () => dispatch => {
     })
     .catch(err => {
       dispatch(fetchPoemsFromDBError(err));
+    })
+};
+
+export const fetchUserPoemsFromDB = (userId) => dispatch => {
+  dispatch(fetchUserPoemFromDBRequest());
+
+   fetch(`${API_BASE_URL}/poems?userId=${userId}`)
+    .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then((poems) =>{
+      dispatch(fetchUserPoemFromDBSuccess(poems));
+    })
+    .catch(err => {
+      dispatch(fetchUserPoemFromDBError(err));
     })
 };
 

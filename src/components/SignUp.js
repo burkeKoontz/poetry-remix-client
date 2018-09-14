@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import { saveUserToDB } from '../actions/user';
 import {reduxForm, Field} from 'redux-form';
 import Input from './Input';
-import {nonEmpty, required, passwordLength, usernameLength, noWhiteSpace} from '../validators';
+import {nonEmpty, required, passwordLength, usernameLength, isTrimmed} from '../validators';
 
 class SignUp extends React.Component {
   onSubmit(values){
@@ -15,11 +16,7 @@ class SignUp extends React.Component {
   render() {
     let successMessage;
     if (this.props.submitSucceeded) {
-        successMessage = (
-            <div className="message message-success">
-                Message submitted successfully
-            </div>
-        );
+        return <Redirect to="/log-in" />;
     }
 
     let errorMessage;
@@ -35,9 +32,9 @@ class SignUp extends React.Component {
             {successMessage}
             {errorMessage}
             <label htmlFor='username'>Username</label>
-            <Field name="username" id="username" type="text" component={Input} validate={[required, nonEmpty, usernameLength]} />
+            <Field name="username" id="username" type="text" component={Input} validate={[ required, nonEmpty, usernameLength]} />
             <label htmlFor='password'>Password</label>
-            <Field name="password" id="password" type="text" component={Input} validate={[ required, nonEmpty, passwordLength]} />
+            <Field name="password" id="password" type="text" component={Input} validate={[required, nonEmpty, passwordLength]} />
             <button disabled={this.props.pristine || this.props.submitting} type="submit">Sign-Up</button>
           </form>
         </div>

@@ -5,7 +5,8 @@ const initialState = {
     loading : false,
     error : null,
     poems : [], // list of poems on db
-    openPoem : null // for looking at a particular poem (non-editable) 
+    openPoem : null, // for looking at a particular poem (non-editable) 
+    userPoems: []
 }
 
 export const poemReducer = (state=initialState, action) => {
@@ -30,6 +31,12 @@ export const poemReducer = (state=initialState, action) => {
       return {...state, loading: false, error: action.error};
     case actions.FETCH_POEMS_FROM_DB_SUCCESS:
       return {...state, poems: action.poems, loading: false};
+    case actions.FETCH_USER_POEMS_FROM_DB_REQUEST:
+      return {...state, loading: true};
+    case actions.FETCH_USER_POEMS_FROM_DB_ERROR:
+      return {...state, loading: false, error: action.error};
+    case actions.FETCH_USER_POEMS_FROM_DB_SUCCESS:
+      return {...state, userPoems: action.poems, loading: false};
     default: 
       return state;
   }

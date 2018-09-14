@@ -9,6 +9,7 @@ import FinishedPoem from './FinishedPoem';
 import NavBar from './NavBar';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
+import UserPoems from './UserPoems';
 
 class App extends React.Component {
 
@@ -19,6 +20,7 @@ class App extends React.Component {
       <Route exact path="/sign-up" component={SignUp} />
       <Route exact path="/log-in" component={LogIn} />
       <Route exact path="/board" component={EditBoard} />
+      <Route exact path="/your-poems" component={UserPoems} />
       <Route exact path="/poems/:id" component={FinishedPoem} />
     </div>);
   }

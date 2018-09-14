@@ -21,7 +21,6 @@ class FinishedPoem extends React.Component {
           <div className='Cell'>
             {magnets.map((magnet, index) => {
               const { left, top, title } = magnets[index];
-              console.log(left);
               return (
                 <Magnet
                   key={magnet._id}

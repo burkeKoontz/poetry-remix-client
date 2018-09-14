@@ -14,9 +14,8 @@ class DragAndDropBar extends React.Component {
     e.preventDefault();
     const title = this.state.title;
     const magnets = this.props.magnets;
-    console.log(title);
-    console.log(magnets);
-    const newPoem = {title, magnets};
+    const id = this.props.currentUser.id || null;
+    const newPoem = {title, magnets, userId: id};
     this.props.dispatch(savePoemToDB(newPoem));
     this.props.dispatch(clearCurrentPoem());
     this.props.dispatch(clearSearching());
@@ -49,7 +48,9 @@ class DragAndDropBar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    magnets: state.magnets.magnets
+    magnets: state.magnets.magnets,
+    editingPoem: state.poem.editingPoem,
+    currentUser: state.user.currentUser
   }
 }
 

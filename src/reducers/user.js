@@ -4,7 +4,8 @@ const initialState = {
     loading : false,
     error : null,
     token : null,
-    currentUser : null
+    currentUser: null,
+    authToken : null
 }
 
 export const userReducer = (state=initialState, action) => {
@@ -20,7 +21,11 @@ export const userReducer = (state=initialState, action) => {
     case actions.LOG_IN_ERROR:
       return {...state, loading: false, error: action.error};
     case actions.LOG_IN_SUCCESS:
-      return {...state, token: action.token, loading: false};
+      return {...state, currentUser: action.user, loading: false};
+    case actions.SET_AUTH_TOKEN:
+      return {...state, authToken: action.authToken};
+      case actions.LOG_OUT:
+      return {...state, authToken: null, currentUser: null};
     default: 
       return state;
   }

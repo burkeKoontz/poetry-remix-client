@@ -1,40 +1,52 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import { logInUser } from '../actions/user';
+import {Redirect} from 'react-router-dom';
+import {reduxForm, Field} from 'redux-form';
+import Input from './Input';
+import {connect} from 'react-redux';
+import {required} from '../validators';
+import {fetchUserPoemsFromDB} from '../actions/poem';
 
 class LogIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {username: '', password: ''}
+  onSubmit(values){
+    const user = {username: values.username, password: values.password}
+    return this.props.dispatch(logInUser(user)).then(() => {
+      console.log(this.props.currentUser);
+      this.props.dispatch(fetchUserPoemsFromDB(this.props.currentUser.id));
+    });
   }
-
-  saveUser(e, state){
-    e.preventDefault();
-    const user = {username: state.username, password: state.password}
-    this.props.dispatch(logInUser(user));
-    if (!this.props.error) {
-      this.props.history.push('/');
-    }
-  }
-
-  setInput(type, input) {
-    this.setState({...this.state, [type] : input})
-  }
-
-  // refactor with redux form tomorrow?
 
   render() {
-    if (this.props.error) {
-      return <div>{this.props.error.message}</div>
+    if (this.props.currentUser) {
+      return <Redirect to="/" />;
     }
-      return (<div>
-          <h2>Log in</h2>
-          <form onSubmit={(e) => this.saveUser(e, this.state)}>
+
+    let successMessage;
+    if (this.props.submitSucceeded) {
+        successMessage = (
+            <div className="message message-success">
+                You are now logged in
+            </div>
+        );
+    }
+
+    let errorMessage;
+    if (this.props.error) {
+        errorMessage = (
+            <div className="message message-error">{this.props.error}</div>
+        );
+    }
+        return (<div>
+          <h2>Log-In</h2>
+          <form onSubmit={this.props.handleSubmit(values =>
+                    this.onSubmit(values))}>
+            {successMessage}
+            {errorMessage}
             <label htmlFor='username'>Username</label>
-            <input onChange={(e) => this.setInput('username', e.target.value)} id='username'></input>
+            <Field name="username" id="username" type="text" component={Input} validate={[required]} />
             <label htmlFor='password'>Password</label>
-            <input onChange={(e) => this.setInput('password', e.target.value)} id='password'></input>
-            <input type="submit" value="Log-in"></input>
+            <Field name="password" id="password" type="text" component={Input} validate={[required]} />
+            <button disabled={this.props.pristine || this.props.submitting} type="submit">Log-In</button>
           </form>
         </div>
     );
@@ -43,8 +55,11 @@ class LogIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    error : state.user.error,
+    currentUser : state.user.currentUser
   }
 }
 
-export default connect(mapStateToProps)(LogIn);
+export default reduxForm({
+  form: 'log-in'
+})((connect(mapStateToProps)(LogIn)));
+
