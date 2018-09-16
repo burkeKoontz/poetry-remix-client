@@ -50,7 +50,7 @@ const mapStateToProps = state => {
   return {
     magnets: state.magnets.magnets,
     editingPoem: state.poem.editingPoem,
-    currentUser: state.user.currentUser
+    currentUser: state.auth.currentUser
   }
 }
 

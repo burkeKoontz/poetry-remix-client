@@ -1,5 +1,5 @@
 import React from 'react';
-import { logInUser } from '../actions/user';
+import { logInUser } from '../actions/auth';
 import {Redirect} from 'react-router-dom';
 import {reduxForm, Field} from 'redux-form';
 import Input from './Input';
@@ -10,6 +10,7 @@ import {fetchUserPoemsFromDB} from '../actions/poem';
 class LogIn extends React.Component {
   onSubmit(values){
     const user = {username: values.username, password: values.password}
+    console.log(user);
     return this.props.dispatch(logInUser(user)).then(() => {
       console.log(this.props.currentUser);
       this.props.dispatch(fetchUserPoemsFromDB(this.props.currentUser.id));
@@ -55,7 +56,7 @@ class LogIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser : state.user.currentUser
+    currentUser : state.auth.currentUser
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { clearCurrentPoem, closePoem} from '../actions/poem';
 import { clearSearching } from '../actions/search';
-import { logOut } from '../actions/user';
+import { clearAuth } from '../actions/auth';
 import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
@@ -13,7 +13,7 @@ class NavBar extends React.Component {
   }
 
   logOut() {
-    this.props.dispatch(logOut());
+    this.props.dispatch(clearAuth());
   }
 
   render() {
@@ -42,7 +42,7 @@ class NavBar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.user.currentUser
+    currentUser: state.auth.currentUser
   }
 }
 

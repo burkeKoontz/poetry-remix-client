@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Poems from './Poems';
-import {fetchUserPoemsFromDB} from '../actions/poem';
 import {Redirect, Link} from 'react-router-dom';
 
 class UserPoems extends React.Component {
@@ -37,7 +35,7 @@ class UserPoems extends React.Component {
 const mapStateToProps = state => {
   return {
     userPoems: state.poem.userPoems,
-    currentUser: state.user.currentUser,
+    currentUser: state.auth.currentUser,
     loading: state.poem.loading
   }
 }
