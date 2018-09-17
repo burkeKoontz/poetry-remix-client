@@ -31,6 +31,7 @@ class DragAndDropBar extends React.Component {
   }
 
   render() {
+ 
     return (
       <div>
         <form onSubmit={(e) => this.savePoem(e)}>
