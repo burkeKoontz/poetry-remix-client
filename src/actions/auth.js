@@ -37,10 +37,8 @@ export function setAuthToken(token) {
 
 export const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
-  console.log(decodedToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user));
-  console.log(authToken);
   saveAuthToken(authToken);
 };
 
@@ -71,7 +69,6 @@ export const logInUser = (user) => dispatch => {
           message: res.statusText
       });
   }
-  console.log(res);
   return res.json();
 })
 .then(({authToken}) => {
@@ -118,9 +115,9 @@ export const refreshAuthToken = () => (dispatch, getState) => {
             code: res.status,
             message: res.statusText
         });
-    }
-      return res.json()})
-      .then(res => res.json())
+        }
+      return res.json();
+    })
       .then(({authToken}) => storeAuthInfo(authToken, dispatch))
       .catch(err => {
           dispatch(authError(err));

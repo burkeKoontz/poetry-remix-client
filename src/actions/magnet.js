@@ -23,3 +23,10 @@ export function deleteMagnet(id) {
     id,
   };
 }
+
+export const CLEAR_MAGNETS = 'CLEAR_MAGNETS';
+export function clearMagnets() {
+  return {
+    type: CLEAR_MAGNETS,
+  };
+}

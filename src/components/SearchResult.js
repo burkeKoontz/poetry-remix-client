@@ -16,10 +16,5 @@ class SearchResult extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    poems: state.search.poems
-  }
-}
 
-export default connect(mapStateToProps)(SearchResult);
+export default connect()(SearchResult);

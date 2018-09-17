@@ -122,6 +122,70 @@ export function fetchUserPoemFromDBError(err) {
   };
 }
 
+export const DELETE_POEM_FROM_DB_REQUEST = 'DELETE_POEM_FROM_DB_REQUEST';
+export function deletePoemFromDBRequest() {
+  return {
+    type: DELETE_POEM_FROM_DB_REQUEST
+  };
+}
+
+export const DELETE_POEM_FROM_DB_SUCCESS = 'DELETE_POEM_FROM_DB_SUCCESS';
+export function deletePoemFromDBSuccess() {
+  return {
+    type: DELETE_POEM_FROM_DB_SUCCESS,
+  };
+}
+
+export const DELETE_POEM_FROM_DB_ERROR = 'DELETE_POEM_FROM_DB_ERROR';
+export function deletePoemFromDBError(err) {
+  return {
+    type: DELETE_POEM_FROM_DB_ERROR,
+    err
+  };
+}
+
+export const UPDATE_POEM_REQUEST = 'UPDATE_POEM_REQUEST';
+export function updatePoemRequest() {
+  return {
+    type: UPDATE_POEM_REQUEST
+  };
+}
+
+export const UPDATE_POEM_SUCCESS = 'UPDATE_POEM_SUCCESS';
+export function updatePoemSuccess() {
+  return {
+    type: UPDATE_POEM_SUCCESS,
+  };
+}
+
+export const UPDATE_POEM_ERROR = 'UPDATE_POEM_ERROR';
+export function updatePoemError(err) {
+  return {
+    type: UPDATE_POEM_ERROR,
+    err
+  };
+}
+
+export const deletePoemByID = (id) => dispatch => {
+  console.log(id);
+  dispatch(deletePoemFromDBRequest());
+   fetch(`${API_BASE_URL}/poems/${id}`, {
+    method: "DELETE" 
+})
+    .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(() =>{
+      dispatch(deletePoemFromDBSuccess());
+    })
+    .catch(err => {
+      dispatch(deletePoemFromDBError(err));
+    })
+};
+
 export const fetchPoemsFromDB = () => dispatch => {
   dispatch(fetchPoemsFromDBRequest());
    fetch(`${API_BASE_URL}/poems`)
@@ -197,5 +261,29 @@ export const savePoemToDB = (newPoem) => dispatch => {
     })
     .catch(err => {
       dispatch(savePoemError(err));
+    })
+};
+
+export const updatePoem = (updatePoem) => dispatch => {
+  const updateBody = {title: updatePoem.title, magnets: updatePoem.magnets, id: updatePoem.id}
+  dispatch(updatePoemRequest());
+   fetch(`${API_BASE_URL}/poems/${updatePoem.id}`, {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(updateBody),
+})
+    .then(res => {
+      if (!res.ok) {
+          return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(() =>{
+      dispatch(updatePoemSuccess());
+    })
+    .catch(err => {
+      dispatch(updatePoemError(err));
     })
 };

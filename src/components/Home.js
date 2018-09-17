@@ -33,6 +33,7 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     searching: state.search.searching,
+    currentUser: state.auth.currentUser
   }
 }
 

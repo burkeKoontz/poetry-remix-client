@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { savePoemToDB, clearCurrentPoem } from '../actions/poem';
+import { savePoemToDB, clearCurrentPoem, updatePoem} from '../actions/poem';
 import {addMagnet} from '../actions/magnet';
 import { clearSearching } from '../actions/search';
 
@@ -15,10 +15,13 @@ class DragAndDropBar extends React.Component {
     const title = this.state.title;
     const magnets = this.props.magnets;
     const id = this.props.currentUser.id || null;
-    const newPoem = {title, magnets, userId: id};
-    this.props.dispatch(savePoemToDB(newPoem));
-    this.props.dispatch(clearCurrentPoem());
-    this.props.dispatch(clearSearching());
+    if (this.props.editingPoem.id) {
+      const updatePoemBody = {title, magnets, userId: id, id: this.props.editingPoem.id}
+      this.props.dispatch(updatePoem(updatePoemBody))
+    } else {
+      const newPoem = {title, magnets, userId: id};
+      this.props.dispatch(savePoemToDB(newPoem));
+    }
   }
 
   addMagnet(e) {
@@ -31,7 +34,7 @@ class DragAndDropBar extends React.Component {
     return (
       <div>
         <form onSubmit={(e) => this.savePoem(e)}>
-          <label htmlFor="title">Set a title</label>
+          <label htmlFor="title">Save Poem</label>
           <input type="text" id="title" onChange={(e) => this.setState({...this.state, title: e.target.value})}></input>
           <button>Save poem to public</button>
         </form>
@@ -48,6 +51,7 @@ class DragAndDropBar extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    error: state.poem.error,
     magnets: state.magnets.magnets,
     editingPoem: state.poem.editingPoem,
     currentUser: state.auth.currentUser

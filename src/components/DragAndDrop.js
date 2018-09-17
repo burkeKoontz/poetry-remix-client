@@ -37,7 +37,14 @@ class DragAndDrop extends React.Component {
   }
 
   componentWillMount() {
-    this.createMagnets(this.props.lines);
+    if (this.props.lines) {
+      this.createMagnets(this.props.lines);
+    } else {
+      console.log(this.props.editingPoem.magnets);
+      this.props.editingPoem.magnets.forEach(magnet => {
+        this.props.dispatch(addMagnet(magnet._id, magnet))
+      });
+    }
   }
 
   createMagnets(lines) {
@@ -58,14 +65,13 @@ class DragAndDrop extends React.Component {
   }
   
   createMagnet(id, content, top, left) {
-    const magnet = {top, left, title: content}
+    console.log('creating magnet');
+    const magnet = {top, left, title: content};
     this.props.dispatch(addMagnet(id, magnet))
   }
   
   render() {
     const { hideSourceOnDrag, connectDropTarget, magnets } = this.props;
-    console.log(this.props.magnets);
-
     return (
     connectDropTarget(
       <div className='Cell'>
@@ -93,7 +99,8 @@ class DragAndDrop extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    magnets: state.magnets.magnets
+    magnets: state.magnets.magnets,
+    editingPoem: state.poem.editingPoem
   }
 }
 

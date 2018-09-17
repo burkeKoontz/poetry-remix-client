@@ -1,8 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect, Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
+import UserPoem from './UserPoem';
+import {fetchUserPoemsFromDB} from '../actions/poem';
 
 class UserPoems extends React.Component {
+
+  componentWillMount() {
+    if (this.props.currentUser) {
+      this.props.dispatch(fetchUserPoemsFromDB(this.props.currentUser.id));
+    }
+  }
 
   render() {
     if (!this.props.currentUser) {
@@ -13,10 +21,7 @@ class UserPoems extends React.Component {
     if (this.props.userPoems.length !== 0) {
       const poemsHtml = this.props.userPoems.map((poem, index) => {
         return (
-          <li key={index}>
-          <p>{`Title: ${poem.title}`}</p>
-          <Link onClick={() => this.seePoem(poem)} to={`/poems/${poem.id}`} >Check out this poem</Link>
-        </li>);
+          <li key={index}><UserPoem title={poem.title} author={poem.author} poem={poem} /></li>);
     });
     return (
       <div>

@@ -4,12 +4,18 @@ import { clearCurrentPoem, closePoem} from '../actions/poem';
 import { clearSearching } from '../actions/search';
 import { clearAuth } from '../actions/auth';
 import { Link } from 'react-router-dom';
+import { clearMagnets } from '../actions/magnet';
 
 class NavBar extends React.Component {
   goHome() {
     this.props.dispatch(clearSearching());
     this.props.dispatch(clearCurrentPoem());
     this.props.dispatch(closePoem());
+    this.props.dispatch(clearMagnets());
+  }
+
+  clearData() {
+    this.props.dispatch(clearMagnets());
   }
 
   logOut() {
@@ -22,7 +28,7 @@ class NavBar extends React.Component {
       return (
         <ul>
           <li><Link onClick={() => this.goHome()} to={`/`} >Homepage</Link></li>
-          <li><Link to={`/your-poems`} >Your poems</Link></li>
+          <li><Link onClick={() => this.clearData()} to={`/your-poems`} >Your poems</Link></li>
           <li>User: {`${this.props.currentUser.username}`}</li>
           <li><button onClick={() => this.logOut()}>Log-out</button></li>
         </ul>
