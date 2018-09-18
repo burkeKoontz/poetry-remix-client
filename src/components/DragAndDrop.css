@@ -4,5 +4,6 @@
   max-width: 800px;
 	height: 900px;
 	border: 1px solid black;
-	background: #ebfaf3;
+  background: #ebfaf3;
+  margin-bottom: 30px;
 }

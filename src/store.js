@@ -7,8 +7,8 @@ import {userReducer} from './reducers/user';
 import {authReducer} from './reducers/auth';
 import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
-import {loadAuthToken} from './local-storage';
-import {setAuthToken, refreshAuthToken} from './actions/auth';
+import {loadAuthToken, loadReturningUser} from './local-storage';
+import {setAuthToken, refreshAuthToken, setReturningUser} from './actions/auth';
 
 const rootReducer = combineReducers({
   search: searchReducer,
@@ -30,6 +30,12 @@ if (authToken) {
     const token = authToken;
     store.dispatch(setAuthToken(token));
     store.dispatch(refreshAuthToken());
+}
+
+const returningUser = loadReturningUser();
+if (returningUser) {
+  console.log('in returning User');
+  store.dispatch(setReturningUser());
 }
 
 export default store;

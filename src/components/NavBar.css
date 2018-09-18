@@ -14,16 +14,26 @@ h1 {
 }
 
 .navitem {
-  padding: 5px;
+  padding: 3px;
   width: 120px;
   height: 40px;
-  margin: 10px;
+  margin: 7px;
   text-align: center;
 }
 
 @media only screen and (max-width: 600px) {
   .navitem {
-    width: 60px;
+    width: 65px;
+    margin: 7px;
+    padding: 1px;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 3px 7.5px;
+    margin-bottom: 2px;
   }
 }
 

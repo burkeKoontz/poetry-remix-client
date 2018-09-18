@@ -39,7 +39,7 @@ class DragAndDropBar extends React.Component {
         <form className="spaced" onSubmit={(e) => this.savePoem(e)}>
           <label className="spaced" htmlFor="title">Save Poem</label>
           <input  className="spaced" type="text" id="title" onChange={(e) => this.setState({...this.state, title: e.target.value})}></input>
-          <button className="button spaced">Save poem to public</button>
+          <button className="button spaced">Save poem</button>
         </form>
         <form className="spaced" onSubmit={(e) => this.addMagnet(e)}>
           <label className="spaced" htmlFor="title">Add a magnet</label>

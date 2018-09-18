@@ -4,7 +4,8 @@ const initialState = {
     loading : false,
     error : null,
     currentUser: null,
-    authToken : null
+    authToken : null,
+    returningUser : false
 }
 
 export const authReducer = (state=initialState, action) => {
@@ -19,6 +20,8 @@ export const authReducer = (state=initialState, action) => {
       return {...state, authToken: action.token};
     case actions.CLEAR_AUTH:
       return {...state, authToken: null, currentUser: null};
+    case actions.SET_RETURNING_USER:
+      return {...state, returningUser: true};
     default: 
       return state;
   }

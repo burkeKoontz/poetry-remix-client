@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import {saveAuthToken, clearAuthToken} from '../local-storage';
+import {saveAuthToken, clearAuthToken, saveReturningUser} from '../local-storage';
 import {API_BASE_URL} from '../config';
 import {SubmissionError} from 'redux-form';
 
@@ -35,6 +35,13 @@ export function setAuthToken(token) {
   };
 }
 
+export const SET_RETURNING_USER = 'SET_RETURNING_USER';
+export function setReturningUser() {
+  return {
+    type: SET_RETURNING_USER
+  };
+}
+
 export const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
@@ -42,6 +49,10 @@ export const storeAuthInfo = (authToken, dispatch) => {
   saveAuthToken(authToken);
 };
 
+export const storeReturningUser = () => (dispatch) => {
+    dispatch(setReturningUser());
+    saveReturningUser();
+};
 
 export const logInUser = (user) => dispatch => {
   dispatch(authRequest());

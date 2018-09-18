@@ -13,3 +13,15 @@ export const clearAuthToken = () => {
       localStorage.removeItem('authToken');
   } catch (e) {}
 };
+
+export const saveReturningUser = () => {
+  console.log('in save')
+  try {
+      localStorage.setItem('returningUser', 'true');
+  } catch (e) {}
+};
+
+export const loadReturningUser= () => {
+  const value = localStorage.getItem('returningUser');
+  return JSON.parse(value);
+};
