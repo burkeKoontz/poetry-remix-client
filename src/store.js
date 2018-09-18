@@ -34,7 +34,6 @@ if (authToken) {
 
 const returningUser = loadReturningUser();
 if (returningUser) {
-  console.log('in returning User');
   store.dispatch(setReturningUser());
 }
 

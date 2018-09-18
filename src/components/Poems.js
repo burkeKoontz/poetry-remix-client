@@ -20,7 +20,10 @@ class Poems extends React.Component {
           </li>);
       });
       return (
+        <div>
+          <h3 className="centered">Poems by other users: </h3>
         <ul className="storedPoems">{poemsHtml}</ul>
+        </div>
       );
     } else if (this.props.loading) {
       return <p>Poems incoming</p>

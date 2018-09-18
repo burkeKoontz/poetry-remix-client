@@ -5,7 +5,6 @@ import LandingPage from './LandingPage';
 import SearchForm from './SearchForm';
 import Poems from './Poems';
 import {fetchPoemsFromDB} from '../actions/poem';
-import './Home.css'
 
 class Home extends React.Component {
 
@@ -17,7 +16,6 @@ class Home extends React.Component {
     if (!this.props.returningUser) {
       return <main><LandingPage /></main>;
     }
-    console.log('out of landing page');
     if (this.props.searching) {
       return (
         <main>

@@ -2,8 +2,6 @@ import {
 	DropTarget,
 	DropTargetMonitor,
 } from 'react-dnd';
-// XYCoord,	DragDropContext,
-// ConnectDropTarget,
 import React from 'react';
 import {connect} from 'react-redux';
 import './DragAndDrop.css';
@@ -40,7 +38,6 @@ class DragAndDrop extends React.Component {
     if (this.props.lines) {
       this.createMagnets(this.props.lines);
     } else {
-      console.log(this.props.editingPoem.magnets);
       this.props.editingPoem.magnets.forEach(magnet => {
         this.props.dispatch(addMagnet(magnet._id, magnet))
       });
@@ -50,31 +47,56 @@ class DragAndDrop extends React.Component {
   createMagnets(lines) {
     const keyArray = Object.keys(lines);
     const arrayofWords = []
-    let xLocation = 20; // changes based on width of previous magnet???
-    let yLocation = 20; // changes when line number changes
+    let xLocation; // changes based on width of previous magnet???
+    let yLocation; // changes when line number changes
+    let lastWordLength;
+    let lastXLocation;
+    let xDifference;
+    let xLocations = [];
+
     for (let i = 0; i < keyArray.length; i++) {
       const content = lines[i].split(' ');
-      for (let j = 0; j < content.length; j++){
-        xLocation = (80 * (j+1));
+      // clear the xLocation after every line
+      xLocations = [];
+      for (let j = 0; j < content.length; j++) {
+        lastWordLength = j > 0 ? content[j-1].length : content[j].length;
+        lastXLocation = j > 0 ? xLocations[j-1] : 60;
+        // xDifference varies based on the word length of the last word
+        xDifference = 8 * (lastWordLength);
+        if (j === 0) {
+          // hard code the first word of the line to 60
+          xLocation = 60;
+        } else {
+          // every other word is based on the previous word's location
+          xLocation = (lastXLocation + xDifference + 50); 
+        }
+        xLocations.push(xLocation);
         yLocation = (60 * (i+1));
         const magnetObj = {lineNumber: i, content: content[j], xLocation, yLocation}
-        arrayofWords.push(magnetObj);
+        if (content[j] !== '') {
+         arrayofWords.push(magnetObj);
+        }
       }
     }
     arrayofWords.map((word, index) => this.createMagnet(index, word.content, word.yLocation, word.xLocation));
   }
   
   createMagnet(id, content, top, left) {
-    console.log('creating magnet');
     const magnet = {top, left, title: content};
     this.props.dispatch(addMagnet(id, magnet))
   }
   
   render() {
+    let height = 300;
     const { hideSourceOnDrag, connectDropTarget, magnets } = this.props;
+    if (Object.keys(magnets).length) {
+      let keyArray = Object.keys(magnets);
+      let keyOfLastMagnet = keyArray[keyArray.length - 1];
+      height = magnets[keyOfLastMagnet].top + 300;
+    }
     return (
     connectDropTarget(
-      <div className='Cell'>
+      <div style={{height}} className='Cell'>
         {Object.keys(magnets).map(key => {
           const { left, top, title } = magnets[key]
           return (
@@ -82,10 +104,8 @@ class DragAndDrop extends React.Component {
               key={key}
               id={key}
               left={left}
-              top={top}
-              
+              top={top} 
               hideSourceOnDrag={hideSourceOnDrag}
-
             >
             {title}
             </Magnet>

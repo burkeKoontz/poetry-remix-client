@@ -15,7 +15,6 @@ export const clearAuthToken = () => {
 };
 
 export const saveReturningUser = () => {
-  console.log('in save')
   try {
       localStorage.setItem('returningUser', 'true');
   } catch (e) {}

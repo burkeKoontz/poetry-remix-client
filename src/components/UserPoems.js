@@ -30,9 +30,9 @@ class UserPoems extends React.Component {
         </main>
     );
   } else if (this.props.loading) {
-    return <p>Poems incoming</p>
+    return <main><p className="spaced">Poems incoming</p></main>;
   } else {
-    return (<p>You haven't created any poems yet</p>);
+    return (<main><p className="spaced">You haven't created any poems yet</p></main>);
   }
 } 
 }

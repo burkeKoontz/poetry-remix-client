@@ -10,6 +10,12 @@ body {
   font-size: 18px;
 }
 
+main {
+  max-width: 1300px;
+  margin: auto;
+  border: 2px solid #555;
+}
+
 a {
   color: #149e5c;
 }
@@ -22,6 +28,11 @@ a:hover {
   margin: 1em;
 }
 
+.centeredBlock {
+  display: block;
+  margin: 1em auto;
+}
+
 .button {
   font-family: 'Cormorant Garamond', serif;
   background-color: #149e5c;
@@ -29,6 +40,5 @@ a:hover {
   color: white;
   padding: 5px 15px;
   text-align: center;
-  display: inline-block;
   font-size: 18px;
 }

@@ -30,7 +30,7 @@ class NavBar extends React.Component {
     if (this.props.currentUser) {
       return (
         <nav>
-          <h1><Link onClick={() => this.goHome()} to={`/`} >Poetry Remixer</Link></h1>
+          <h1><Link onClick={() => this.goHome()} to={`/`} >Poetry Remix</Link></h1>
           <ul className="navbar" role="navigation">
             <li className="navitem"><Link onClick={() => this.goHome()} to={`/`} >Home</Link></li>
             <li className="navitem"><Link onClick={() => this.clearData()} to={`/your-poems`} >Your poems</Link></li>
@@ -42,7 +42,7 @@ class NavBar extends React.Component {
     } else {
     return (
       <nav>
-        <h1><Link onClick={() => this.goHome()} to={`/`} >Poetry Remixer</Link></h1>
+        <h1><Link onClick={() => this.goHome()} to={`/`} >Poetry Remix</Link></h1>
         <ul className="navbar" role="navigation">
           <li className="navitem"><Link onClick={() => this.goHome()} to={`/`} >Home</Link></li>
           <li className="navitem"><Link to={`/sign-up`} >Sign-up</Link></li>

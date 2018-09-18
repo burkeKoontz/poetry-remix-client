@@ -55,7 +55,6 @@ export function setSearchTerm(searchTerm) {
 }
 
 export const fetchPoemsFromAPI = (searchTerms) => dispatch => {
-  console.log(searchTerms);
   const authorSearchTerm = searchTerms.authorSearchTerm;
   const titleSearchTerm = searchTerms.titleSearchTerm;
 
