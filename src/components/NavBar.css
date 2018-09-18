@@ -1,0 +1,41 @@
+
+
+h1 {
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.navitem {
+  padding: 5px;
+  width: 120px;
+  height: 40px;
+  margin: 10px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .navitem {
+    width: 60px;
+  }
+}
+
+nav {
+  max-width: 900px;
+  margin: auto;
+  border-top: 2px solid #555;
+  border-left: 2px solid #555;
+  border-right: 2px solid #555;
+  background-color: #ebfaf3;
+}
+
+.green {
+  color: #149e5c;
+}

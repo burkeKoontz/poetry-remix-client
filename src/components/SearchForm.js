@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchPoemsFromAPI, startSearching, toggleSearchForm } from '../actions/search';
+import './SearchForm.css';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -25,25 +26,29 @@ class SearchForm extends React.Component {
   render() {
     if (this.props.searchFormExtended) {
     return (
-        <div>
-          <form onSubmit={(e) => this.setSearch(e, this.state)}>
-            <label htmlFor='byTitle'>Search by title</label>
-            <input onChange={(e) => this.setInput('titleSearchTerm', e.target.value)} id='byTitle'></input>
-            <p>AND/OR</p>
-            <label htmlFor='byAuthor'>Search by author</label>
-            <input onChange={(e) => this.setInput('authorSearchTerm', e.target.value)} id='byAuthor'></input>
+        <div className='searchForm'>
+          <form className="spaced" onSubmit={(e) => this.setSearch(e, this.state)}>
+            <div className="inline-block">
+              <label className="spaced" htmlFor='byTitle'>Search by title</label>
+              <input className="spaced" onChange={(e) => this.setInput('titleSearchTerm', e.target.value)} id='byTitle'></input>
+            </div>
+            <p className="inline-block">AND/OR</p>
+            <div className="inline-block">
+              <label className="spaced" htmlFor='byAuthor'>Search by author</label>
+              <input className="spaced" onChange={(e) => this.setInput('authorSearchTerm', e.target.value)} id='byAuthor'></input>
+            </div>
             <div>
-              <button>Search</button>
+              <button className="button">Search</button>
             </div>
           </form>
-          <button onClick={() => this.toggleSearchForm()}>Close search form</button>
+          <button className="button" onClick={() => this.toggleSearchForm()}>Close search form</button>
         </div>
     );
   } else {
     return (
-      <div>
-        <p>Search for your favorite public domain poetry!</p>
-        <button onClick={() => this.toggleSearchForm()}>Open seach form</button>
+      <div className='searchForm'>
+        <p>Search for public domain poetry to remix!</p>
+        <button className="button" onClick={() => this.toggleSearchForm()}>Open search form</button>
       </div>    
     );
   }

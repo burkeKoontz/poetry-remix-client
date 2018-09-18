@@ -25,9 +25,9 @@ class SignUp extends React.Component {
             <div className="message message-error">{this.props.error}</div>
         );
     }
-        return (<div>
+        return (<main className="centered">
           <h2>Sign-up</h2>
-          <form onSubmit={this.props.handleSubmit(values =>
+          <form className="spaced" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>
             {successMessage}
             {errorMessage}
@@ -35,9 +35,9 @@ class SignUp extends React.Component {
             <Field name="usernameSubmit" id="usernameSubmit" type="text" component={Input} validate={[ required, nonEmpty, usernameLength, isTrimmed]} />
             <label htmlFor='passwordSubmit'>Password</label>
             <Field name="passwordSubmit" id="passwordSubmit" type="text" component={Input} validate={[ required, nonEmpty, passwordLength, isTrimmed]} />
-            <button disabled={this.props.pristine || this.props.submitting} type="submit">Sign-Up</button>
+            <button className="button spaced" disabled={this.props.pristine || this.props.submitting} type="submit">Sign-Up</button>
           </form>
-        </div>
+        </main>
     );
   }
 }

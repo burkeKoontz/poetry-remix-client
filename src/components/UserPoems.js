@@ -24,10 +24,10 @@ class UserPoems extends React.Component {
           <li key={index}><UserPoem title={poem.title} author={poem.author} poem={poem} /></li>);
     });
     return (
-      <div>
-          <h2>Your poems:</h2>
+      <main>
+          <h2 className="spaced">Your poems:</h2>
           <ul>{poemsHtml}</ul>
-        </div>
+        </main>
     );
   } else if (this.props.loading) {
     return <p>Poems incoming</p>

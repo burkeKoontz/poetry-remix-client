@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Magnet from './Magnet';
 import { fetchPoemByID } from '../actions/poem';
 import {CLIENT_BASE_URL} from '../config';
+import './FinishedPoem.css'
 
 class FinishedPoem extends React.Component {
 
@@ -15,14 +16,13 @@ class FinishedPoem extends React.Component {
     let share;
   
     if (this.props.poem) {
-      if (this.props.poem.userId && this.props.currentUser.id && this.props.currentUser.id === this.props.poem.userId) {
-         share =  <p>Share this poem with your friends! Just pass them this link: {`${CLIENT_BASE_URL}/poems/${this.props.poem.id}`}</p>
-      }console.log(this.props.poem);
-   
+      if (this.props.currentUser && this.props.currentUser.id === this.props.poem.userId) {
+         share =  <p className="centered">Share this poem with your friends! Just pass them this link: {`${CLIENT_BASE_URL}/poems/${this.props.poem.id}`}</p>
+      }
       const { magnets } = this.props.poem;
       return (
-        <div>
-          <p>Title: {this.props.poem.title}</p>
+        <main>
+          <p className="centered">Title: {this.props.poem.title}</p>
           {share}
           <div className='Cell'>
             {magnets.map((magnet, index) => {
@@ -39,7 +39,7 @@ class FinishedPoem extends React.Component {
               );
             })}
           </div>
-        </div>
+        </main>
       );
     } else {
       return <p>Loading</p>

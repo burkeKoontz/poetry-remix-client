@@ -10,9 +10,7 @@ import {fetchUserPoemsFromDB} from '../actions/poem';
 class LogIn extends React.Component {
   onSubmit(values){
     const user = {username: values.username, password: values.password}
-    console.log(user);
     return this.props.dispatch(logInUser(user)).then(() => {
-      console.log(this.props.currentUser);
       this.props.dispatch(fetchUserPoemsFromDB(this.props.currentUser.id));
     });
   }
@@ -37,9 +35,9 @@ class LogIn extends React.Component {
             <div className="message message-error">{this.props.error}</div>
         );
     }
-        return (<div>
+        return (<main className="centered">
           <h2>Log-In</h2>
-          <form onSubmit={this.props.handleSubmit(values =>
+          <form className="spaced" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>
             {successMessage}
             {errorMessage}
@@ -47,9 +45,9 @@ class LogIn extends React.Component {
             <Field name="username" id="username" type="text" component={Input} validate={[required]} />
             <label htmlFor='password'>Password</label>
             <Field name="password" id="password" type="text" component={Input} validate={[required]} />
-            <button disabled={this.props.pristine || this.props.submitting} type="submit">Log-In</button>
+            <button className="button spaced" disabled={this.props.pristine || this.props.submitting} type="submit">Log-In</button>
           </form>
-        </div>
+        </main>
     );
   }
 }

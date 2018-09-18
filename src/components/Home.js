@@ -4,6 +4,7 @@ import SearchResults from './SearchResults';
 import SearchForm from './SearchForm';
 import Poems from './Poems';
 import {fetchPoemsFromDB} from '../actions/poem';
+import './Home.css'
 
 class Home extends React.Component {
 
@@ -14,17 +15,17 @@ class Home extends React.Component {
   render() {
     if (this.props.searching) {
       return (
-        <div>
+        <main>
           <SearchForm />
           <SearchResults />
-        </div>
+        </main>
       );
     } else {
       return (
-        <div>
+        <main>
           <SearchForm />
           <Poems />
-        </div>
+        </main>
     );
   }
 } 

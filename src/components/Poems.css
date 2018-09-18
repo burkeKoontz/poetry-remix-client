@@ -1,0 +1,14 @@
+.storedPoems {
+  text-align: center;
+  padding: 0;
+}
+
+.storedPoem {
+  list-style: none;
+}
+
+.inline-block {
+  list-style: none;
+  display: inline-block;
+  margin: 1em;
+}

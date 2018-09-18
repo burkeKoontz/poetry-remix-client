@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { savePoemToDB, clearCurrentPoem, updatePoem} from '../actions/poem';
+import { savePoemToDB, updatePoem} from '../actions/poem';
 import {addMagnet} from '../actions/magnet';
-import { clearSearching } from '../actions/search';
 
 class DragAndDropBar extends React.Component {
   constructor(props) {
@@ -14,7 +13,10 @@ class DragAndDropBar extends React.Component {
     e.preventDefault();
     const title = this.state.title;
     const magnets = this.props.magnets;
-    const id = this.props.currentUser.id || null;
+    let id;
+    if (this.props.currentUser) {
+      id = this.props.currentUser.id ;
+    }
     if (this.props.editingPoem.id) {
       const updatePoemBody = {title, magnets, userId: id, id: this.props.editingPoem.id}
       this.props.dispatch(updatePoem(updatePoemBody))
@@ -31,18 +33,18 @@ class DragAndDropBar extends React.Component {
   }
 
   render() {
- 
+  
     return (
-      <div>
-        <form onSubmit={(e) => this.savePoem(e)}>
-          <label htmlFor="title">Save Poem</label>
-          <input type="text" id="title" onChange={(e) => this.setState({...this.state, title: e.target.value})}></input>
-          <button>Save poem to public</button>
+      <div className="centered">
+        <form className="spaced" onSubmit={(e) => this.savePoem(e)}>
+          <label className="spaced" htmlFor="title">Save Poem</label>
+          <input  className="spaced" type="text" id="title" onChange={(e) => this.setState({...this.state, title: e.target.value})}></input>
+          <button className="button spaced">Save poem to public</button>
         </form>
-        <form onSubmit={(e) => this.addMagnet(e)}>
-          <label htmlFor="title">Add a magnet</label>
-          <input type="text" id="title" onChange={(e) => this.setState({...this.state, magnet: e.target.value})}></input>
-          <button>Add magnet to board</button>
+        <form className="spaced" onSubmit={(e) => this.addMagnet(e)}>
+          <label className="spaced" htmlFor="title">Add a magnet</label>
+          <input  className="spaced" type="text" id="title" onChange={(e) => this.setState({...this.state, magnet: e.target.value})}></input>
+          <button className="button spaced">Add magnet to board</button>
         </form>
       </div>
     );

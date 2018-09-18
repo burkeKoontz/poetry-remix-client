@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
         <ul>{poemsHtml}</ul>
       );
     } else if (this.props.searching) {
-      return <p>Poems incoming</p>
+      return <p className="spaced">Poems incoming</p>
     } else {
       return (<p>Search for poems</p>);
     }

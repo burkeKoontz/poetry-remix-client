@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {setCurrentPoem} from '../actions/poem';
 import { Link } from 'react-router-dom';
+import './SearchResult.css';
 
 class SearchResult extends React.Component {
 
@@ -10,8 +11,8 @@ class SearchResult extends React.Component {
   }
 
   render() {
-    return (<div>Title: {this.props.title}, Author: {this.props.author}
-    <Link onClick={() => this.setCurrentPoem(this.props.poem)} to={`/board`} >Remix this</Link>
+    return (<div className="searchResult"><p className="spaced inline-block">Title: {this.props.title}, Author: {this.props.author}</p>
+    <Link className="spaced inline-block" onClick={() => this.setCurrentPoem(this.props.poem)} to={`/board`} >Remix this</Link>
     </div>);
   }
 }

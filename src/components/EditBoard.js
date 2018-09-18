@@ -1,18 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 import DragAndDrop from './DragAndDrop';
 import DragAndDropBar from './DragAndDropBar';
+import { Redirect } from 'react-router-dom';
 
 class EditBoard extends React.Component {
 
   render() {
-    return (
-      <div>
-        <DragAndDropBar />
-        <DragAndDrop lines={this.props.editingPoem.lines} magnets={this.props.editingPoem.magnets} hideSourceOnDrag={true}/>
-      </div>
-    );
+    if (this.props.editingPoem) {
+      return (
+        <main>
+          <DragAndDropBar />
+          <DragAndDrop lines={this.props.editingPoem.lines} magnets={this.props.editingPoem.magnets} hideSourceOnDrag={true}/>
+        </main>
+      );
+  } else {
+    return <Redirect to="/" />;
+  }
   }
 }
 
