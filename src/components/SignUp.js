@@ -27,9 +27,9 @@ class SignUp extends React.Component {
             <div className="message message-error">{this.props.error}</div>
         );
     }
-        return (<main role="main" className="centered">
+        return (<main aria-live="assertive" role="main" className="centered">
           <h2>Sign-up</h2>
-          <form className="spaced" onSubmit={this.props.handleSubmit(values =>
+          <form className="spaced" name="sign-up-form" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>
             {successMessage}
             {errorMessage}

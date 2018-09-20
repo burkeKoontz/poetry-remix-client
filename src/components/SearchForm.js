@@ -27,7 +27,7 @@ class SearchForm extends React.Component {
     if (this.props.searchFormExtended) {
     return (
         <div className='searchForm'>
-          <form className="spaced" onSubmit={(e) => this.setSearch(e, this.state)}>
+          <form name="search-form" className="spaced" onSubmit={(e) => this.setSearch(e, this.state)}>
             <div className="inline-block">
               <label className="spaced" htmlFor='byTitle'>Search by title</label>
               <input className="spaced" onChange={(e) => this.setInput('titleSearchTerm', e.target.value)} id='byTitle'></input>

@@ -13,7 +13,7 @@ class LogIn extends React.Component {
     const {reset} = this.props
     reset();
   }
-  
+
   onSubmit(values){
     const user = {username: values.username, password: values.password}
     return this.props.dispatch(logInUser(user)).then(() => {
@@ -41,9 +41,9 @@ class LogIn extends React.Component {
             <div className="message message-error">{this.props.error}</div>
         );
     }
-        return (<main role="main" className="centered">
+        return (<main aria-live="assertive" role="main" className="centered">
           <h2>Log-In</h2>
-          <form className="spaced" onSubmit={this.props.handleSubmit(values =>
+          <form name="log-in-form"  className="spaced" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>
             {successMessage}
             {errorMessage}

@@ -16,7 +16,7 @@ class Poems extends React.Component {
           return (
             <li className="storedPoem" key={index}>
             <p className="inline-block">{`Title: ${poem.title}`}</p>
-            <Link className="inline-block" onClick={() => this.seePoem(poem)} to={`/poems/${poem.id}`} >Check out this poem</Link>
+            <Link className="inline-block" onClick={() => this.seePoem(poem)} to={`/poems/${poem.id}`} >Check out {poem.title}</Link>
           </li>);
       });
       return (
