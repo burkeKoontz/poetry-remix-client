@@ -20,14 +20,16 @@ class FinishedPoem extends React.Component {
          share =  <p className="centered">Share this poem with your friends! Just pass them this link: {`${CLIENT_BASE_URL}/poems/${this.props.poem.id}`}</p>
       }
       const { magnets } = this.props.poem;
-      let height = 300;
-       if (Object.keys(magnets).length) {
-          let keyArray = Object.keys(magnets);
-          let keyOfLastMagnet = keyArray[keyArray.length - 1];
-          height = magnets[keyOfLastMagnet].top + 300;
-        }
+      let height;
+      if (Object.keys(magnets).length) {
+        let keyArray = Object.keys(magnets);
+        height = keyArray.reduce((acc, key) => {
+          console.log(acc);
+          return magnets[key].top > 300 ? magnets[key].top + 300 : acc;
+        }, 300)
+      }
       return (
-        <main>
+        <main role="main">
           <p className="centered">Title: {this.props.poem.title}</p>
           {share}
           <div style={{height}} className='Cell'>
@@ -48,7 +50,7 @@ class FinishedPoem extends React.Component {
         </main>
       );
     } else {
-      return <p>Loading</p>
+      return <main role="main"><p className="spaced">Loading</p></main>
     }
 }
 }

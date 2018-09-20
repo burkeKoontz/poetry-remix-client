@@ -1,5 +1,13 @@
 import {API_BASE_URL} from '../config';
 
+export const SET_HEIGHT_OF_CURRENT_POEM = 'SET_HEIGHT_OF_POEM';
+export function setHeightOfPoem(height) {
+  return {
+    type: SET_HEIGHT_OF_CURRENT_POEM,
+    height
+  };
+}
+
 export const SET_CURRENT_POEM = 'SET_CURRENT_POEM';
 export function setCurrentPoem(poem) {
   return {
@@ -265,7 +273,10 @@ export const savePoemToDB = (newPoem) => dispatch => {
 };
 
 export const updatePoem = (updatePoem) => dispatch => {
-  const updateBody = {title: updatePoem.title, magnets: updatePoem.magnets, id: updatePoem.id}
+  const keyArray = Object.keys(updatePoem.magnets);
+  const magnets = keyArray.map(key => updatePoem.magnets[key])
+
+  const updateBody = {title: updatePoem.title, magnets, id: updatePoem.id}
   dispatch(updatePoemRequest());
    fetch(`${API_BASE_URL}/poems/${updatePoem.id}`, {
     method: "PUT",

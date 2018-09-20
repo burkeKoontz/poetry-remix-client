@@ -47,37 +47,32 @@ class DragAndDrop extends React.Component {
   createMagnets(lines) {
     const keyArray = Object.keys(lines);
     const arrayofWords = []
-    let xLocation; // changes based on width of previous magnet???
-    let yLocation; // changes when line number changes
+    let xLocation; // changes based on width of previous magnet
+    let yLocation; // changes when line number of poem changes
     let lastWordLength;
     let lastXLocation;
     let xDifference;
     let xLocations = [];
+    const windowWidth = window.screen.availWidth;
 
-    for (let i = 0; i < keyArray.length; i++) {
+    keyArray.forEach((line, i) => {
       const content = lines[i].split(' ');
-      // clear the xLocation after every line
       xLocations = [];
-      for (let j = 0; j < content.length; j++) {
+      content.forEach((word, j) => {
         lastWordLength = j > 0 ? content[j-1].length : content[j].length;
         lastXLocation = j > 0 ? xLocations[j-1] : 60;
         // xDifference varies based on the word length of the last word
-        xDifference = 8 * (lastWordLength);
-        if (j === 0) {
-          // hard code the first word of the line to 60
-          xLocation = 60;
-        } else {
-          // every other word is based on the previous word's location
-          xLocation = (lastXLocation + xDifference + 50); 
-        }
+        xDifference = windowWidth < 600 ?  2 * (lastWordLength) : 8 * (lastWordLength);
+        xLocation = j === 0 ? 60 : (lastXLocation + xDifference + 50);
         xLocations.push(xLocation);
         yLocation = (60 * (i+1));
         const magnetObj = {lineNumber: i, content: content[j], xLocation, yLocation}
         if (content[j] !== '') {
-         arrayofWords.push(magnetObj);
-        }
-      }
-    }
+          arrayofWords.push(magnetObj);
+         }
+      })
+    })
+
     arrayofWords.map((word, index) => this.createMagnet(index, word.content, word.yLocation, word.xLocation));
   }
   
@@ -87,12 +82,16 @@ class DragAndDrop extends React.Component {
   }
   
   render() {
-    let height = 300;
+    const windowWidth = window.screen.availWidth;
+    const transform = windowWidth < 600 ? 'scale(.8, .8)' : null;
+    let height;
     const { hideSourceOnDrag, connectDropTarget, magnets } = this.props;
     if (Object.keys(magnets).length) {
       let keyArray = Object.keys(magnets);
-      let keyOfLastMagnet = keyArray[keyArray.length - 1];
-      height = magnets[keyOfLastMagnet].top + 300;
+      height = keyArray.reduce((acc, key) => {
+        console.log(acc);
+        return magnets[key].top > 300 ? magnets[key].top + 300 : acc;
+      }, 300)
     }
     return (
     connectDropTarget(
@@ -105,6 +104,7 @@ class DragAndDrop extends React.Component {
               id={key}
               left={left}
               top={top} 
+              transform={transform}
               hideSourceOnDrag={hideSourceOnDrag}
             >
             {title}
@@ -120,7 +120,8 @@ class DragAndDrop extends React.Component {
 const mapStateToProps = state => {
   return {
     magnets: state.magnets.magnets,
-    editingPoem: state.poem.editingPoem
+    editingPoem: state.poem.editingPoem,
+    addingMoreMagnets : state.magnets.addingMoreMagnets
   }
 }
 

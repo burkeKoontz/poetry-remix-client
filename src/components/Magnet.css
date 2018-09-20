@@ -15,3 +15,14 @@
 	font-size: 7px;
 	padding: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .magnet {
+		position: absolute;
+		border: 1px solid darkslategray;
+		background-color: white;
+		padding: 0.25rem .75rem;
+		cursor: move;
+		transform: scale(.75,.75);
+  }
+}

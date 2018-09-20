@@ -8,8 +8,10 @@ import {nonEmpty, required, passwordLength, usernameLength, isTrimmed} from '../
 
 class SignUp extends React.Component {
   onSubmit(values){
+    console.log(values);
     // e.preventDefault();
-    const newUser = {username: values.username, password: values.password}
+    const newUser = {username: values.usernameSubmit, password: values.passwordSubmit};
+    console.log(newUser);
     return this.props.dispatch(saveUserToDB(newUser));
   }
 
@@ -25,7 +27,7 @@ class SignUp extends React.Component {
             <div className="message message-error">{this.props.error}</div>
         );
     }
-        return (<main className="centered">
+        return (<main role="main" className="centered">
           <h2>Sign-up</h2>
           <form className="spaced" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>

@@ -24,15 +24,15 @@ class UserPoems extends React.Component {
           <li key={index}><UserPoem title={poem.title} author={poem.author} poem={poem} /></li>);
     });
     return (
-      <main>
+        <main role="main">
           <h2 className="spaced">Your poems:</h2>
           <ul>{poemsHtml}</ul>
         </main>
     );
   } else if (this.props.loading) {
-    return <main><p className="spaced">Poems incoming</p></main>;
+    return <main role="main"><p className="spaced">Poems incoming</p></main>;
   } else {
-    return (<main><p className="spaced">You haven't created any poems yet</p></main>);
+    return (<main role="main"><p className="spaced">You haven't created any poems yet</p></main>);
   }
 } 
 }
@@ -44,7 +44,5 @@ const mapStateToProps = state => {
     loading: state.poem.loading
   }
 }
-
-
 
 export default connect(mapStateToProps)(UserPoems);

@@ -7,6 +7,7 @@ export function addMagnet(id, magnet) {
   };
 }
 
+
 export const CHANGE_MAGNET_LOCATION = 'CHANGE_MAGNET_LOCATION';
 export function changeMagnetLocation(id, magnet) {
   return {

@@ -9,7 +9,7 @@ class EditBoard extends React.Component {
   render() {
     if (this.props.editingPoem) {
       return (
-        <main>
+        <main role="main">
           <DragAndDropBar />
           <DragAndDrop lines={this.props.editingPoem.lines} magnets={this.props.editingPoem.magnets} hideSourceOnDrag={true}/>
         </main>

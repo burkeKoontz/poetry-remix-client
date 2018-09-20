@@ -21,7 +21,7 @@ class Poems extends React.Component {
       });
       return (
         <div>
-          <h3 className="centered">Poems by other users: </h3>
+        <h2 className="centered">Poems by other users: </h2>
         <ul className="storedPoems">{poemsHtml}</ul>
         </div>
       );

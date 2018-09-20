@@ -18,7 +18,8 @@ class DragAndDropBar extends React.Component {
       id = this.props.currentUser.id ;
     }
     if (this.props.editingPoem.id) {
-      const updatePoemBody = {title, magnets, userId: id, id: this.props.editingPoem.id}
+      const updatePoemBody = {title, magnets, userId: id, id: this.props.editingPoem.id};
+      console.log(updatePoemBody);
       this.props.dispatch(updatePoem(updatePoemBody))
     } else {
       const newPoem = {title, magnets, userId: id};
@@ -42,8 +43,8 @@ class DragAndDropBar extends React.Component {
           <button className="button spaced">Save poem</button>
         </form>
         <form className="spaced" onSubmit={(e) => this.addMagnet(e)}>
-          <label className="spaced" htmlFor="title">Add a magnet</label>
-          <input  className="spaced" type="text" id="title" onChange={(e) => this.setState({...this.state, magnet: e.target.value})}></input>
+          <label className="spaced" htmlFor="magnet">Add a magnet</label>
+          <input  className="spaced" type="text" id="magnet" onChange={(e) => this.setState({...this.state, magnet: e.target.value})}></input>
           <button className="button spaced">Add magnet to board</button>
         </form>
       </div>
@@ -57,7 +58,7 @@ const mapStateToProps = state => {
     error: state.poem.error,
     magnets: state.magnets.magnets,
     editingPoem: state.poem.editingPoem,
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
   }
 }
 

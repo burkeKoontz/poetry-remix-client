@@ -14,18 +14,18 @@ class Home extends React.Component {
 
   render() {
     if (!this.props.returningUser) {
-      return <main><LandingPage /></main>;
+      return <main role="main"><LandingPage /></main>;
     }
     if (this.props.searching) {
       return (
-        <main>
+        <main role="main">
           <SearchForm />
           <SearchResults />
         </main>
       );
     } else {
       return (
-        <main>
+        <main role="main">
           <SearchForm />
           <Poems />
         </main>

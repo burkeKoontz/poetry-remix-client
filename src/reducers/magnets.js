@@ -1,7 +1,7 @@
 import * as actions from '../actions/magnet';
 
 const initialState = {
-    magnets : {}
+    magnets : {},
 }
 
 export const magnetReducer = (state=initialState, action) => {
@@ -14,7 +14,7 @@ export const magnetReducer = (state=initialState, action) => {
       let {[action.id]: omit, ...res} = state.magnets;
       return {...state, magnets: res};
     case actions.CLEAR_MAGNETS:
-      return {...state, magnets: {}};
+      return {...state, magnets: {}, addingMoreMagnets: false};
     default: 
       return state;
   }

@@ -8,11 +8,17 @@ import {required} from '../validators';
 import {fetchUserPoemsFromDB} from '../actions/poem';
 
 class LogIn extends React.Component {
+
+  componentWillMount() {
+    const {reset} = this.props
+    reset();
+  }
+  
   onSubmit(values){
     const user = {username: values.username, password: values.password}
     return this.props.dispatch(logInUser(user)).then(() => {
       this.props.dispatch(fetchUserPoemsFromDB(this.props.currentUser.id));
-    });
+    })
   }
 
   render() {
@@ -35,7 +41,7 @@ class LogIn extends React.Component {
             <div className="message message-error">{this.props.error}</div>
         );
     }
-        return (<main className="centered">
+        return (<main role="main" className="centered">
           <h2>Log-In</h2>
           <form className="spaced" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>
