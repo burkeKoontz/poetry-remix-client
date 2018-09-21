@@ -15,8 +15,7 @@ Check out the application [here](https://poetry-remix-client.herokuapp.com/).
 ![Another look at the application](https://user-images.githubusercontent.com/39100656/45898630-5ba03880-bd8f-11e8-84ed-45ac59e27209.PNG)
 
 ## Key Parts of Project
-The most interesting parts of this project are located in the DragAndDrop component and the Magnet component. Each poem chosen to remix is split up into words that are dynamically placed on a drag and drop board,
-but line breaks in the original poem are maintained.
+The most interesting parts of this project are located in the DragAndDrop component and the Magnet component. Each poem chosen to remix is split up into words that are dynamically placed on a drag and drop board. Line breaks in the original poem are maintained.
 
 The server side code for this project lives [here](https://github.com/burkeKoontz/poetry-remix-server).
 
