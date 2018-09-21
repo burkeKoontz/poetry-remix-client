@@ -4,7 +4,7 @@ import SearchResults from './SearchResults';
 import LandingPage from './LandingPage';
 import SearchForm from './SearchForm';
 import Poems from './Poems';
-import {fetchPoemsFromDB} from '../actions/poem';
+import {fetchPoemsFromDB, clearSuccess} from '../actions/poem';
 
 class Home extends React.Component {
 
@@ -14,7 +14,7 @@ class Home extends React.Component {
 
   render() {
     if (!this.props.returningUser) {
-      return <main aria-live="assertive" role="main"><LandingPage /></main>;
+      return <main role="main"><LandingPage /></main>;
     }
     if (this.props.searching) {
       return (

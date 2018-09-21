@@ -53,6 +53,13 @@ export function savePoemSuccess() {
   };
 }
 
+export const CLEAR_SUCCESS = 'CLEAR_SUCCESS';
+export function clearSuccess() {
+  return {
+    type: CLEAR_SUCCESS
+  };
+}
+
 export const SAVE_POEM_ERROR = 'SAVE_POEM_ERROR';
 export function savePoemError(err) {
   return {
@@ -130,6 +137,14 @@ export function fetchUserPoemFromDBError(err) {
   };
 }
 
+export const DELETE_POEM_FROM_STATE= 'DELETE_POEM_FROM_STATE';
+export function deletePoemFromState(id) {
+  return {
+    type: DELETE_POEM_FROM_STATE,
+    id
+  };
+}
+
 export const DELETE_POEM_FROM_DB_REQUEST = 'DELETE_POEM_FROM_DB_REQUEST';
 export function deletePoemFromDBRequest() {
   return {
@@ -179,17 +194,19 @@ export const deletePoemByID = (id) => dispatch => {
   dispatch(deletePoemFromDBRequest());
    fetch(`${API_BASE_URL}/poems/${id}`, {
     method: "DELETE" 
-})
+    })
     .then(res => {
+      console.log(res);
       if (!res.ok) {
           return Promise.reject(res.statusText);
       }
-      return res.json();
+      return;
     })
     .then(() =>{
       dispatch(deletePoemFromDBSuccess());
     })
     .catch(err => {
+      console.log(err);
       dispatch(deletePoemFromDBError(err));
     })
 };

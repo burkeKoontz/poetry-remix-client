@@ -1,12 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { savePoemToDB, updatePoem} from '../actions/poem';
-import {addMagnet} from '../actions/magnet';
+import { savePoemToDB, updatePoem, clearCurrentPoem, closePoem, clearSuccess} from '../actions/poem';
+import {clearSearching} from '../actions/search';
+import {addMagnet, clearMagnets} from '../actions/magnet';
+import { Redirect } from 'react-router-dom';
 
 class DragAndDropBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {title: '', magnet: ''}
+  }
+
+  goHome() {
+    this.props.dispatch(clearSearching());
+    // this.props.dispatch(clearCurrentPoem());
+    this.props.dispatch(clearMagnets());
   }
 
   savePoem(e) {
@@ -19,11 +27,12 @@ class DragAndDropBar extends React.Component {
     }
     if (this.props.editingPoem.id) {
       const updatePoemBody = {title, magnets, userId: id, id: this.props.editingPoem.id};
-      console.log(updatePoemBody);
-      this.props.dispatch(updatePoem(updatePoemBody))
+      this.props.dispatch(updatePoem(updatePoemBody));
+      this.goHome();
     } else {
       const newPoem = {title, magnets, userId: id};
       this.props.dispatch(savePoemToDB(newPoem));
+      this.goHome();
     }
   }
 
@@ -34,6 +43,15 @@ class DragAndDropBar extends React.Component {
   }
 
   render() {
+    if (this.props.saveSuccess && !this.props.currentUser) {
+      this.props.dispatch(clearSuccess());
+      return <Redirect to="/" />
+    }
+
+    if (this.props.updateSuccess || this.props.saveSuccess) {
+      this.props.dispatch(clearSuccess());
+      return <Redirect to="/your-poems" />
+    }
   
     return (
       <div className="centered">
@@ -59,6 +77,8 @@ const mapStateToProps = state => {
     magnets: state.magnets.magnets,
     editingPoem: state.poem.editingPoem,
     currentUser: state.auth.currentUser,
+    updateSuccess: state.poem.updateSuccess,
+    saveSuccess: state.poem.saveSuccess
   }
 }
 

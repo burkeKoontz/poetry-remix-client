@@ -6,11 +6,23 @@ const initialState = {
     error : null,
     poems : [], // list of poems on db
     openPoem : null, // for looking at a particular poem (non-editable) 
-    userPoems: []
+    userPoems: [],
+    saveSuccess: null,
+    updateSuccess: null,
+    deleteSuccess: null
 }
 
 export const poemReducer = (state=initialState, action) => {
   switch (action.type) {
+    case actions.UPDATE_POEM_SUCCESS:
+      return {...state, updateSuccess: true};
+    case actions.SAVE_POEM_SUCCESS:
+      return {...state, saveSuccess: true};
+    case actions.CLEAR_SUCCESS:
+      return {...state, saveSuccess: null, updateSuccess: null, deleteSuccess: null};
+    case actions.DELETE_POEM_FROM_STATE:
+      let newUserPoems = state.userPoems.filter(element => element.id !== action.id)
+      return {...state, userPoems: newUserPoems};
     case actions.OPEN_POEM:
       return {...state, openPoem: action.poem};
     case actions.CLOSE_POEM:
