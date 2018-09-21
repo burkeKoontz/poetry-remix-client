@@ -20,18 +20,25 @@ The most interesting parts of this project are located in the DragAndDrop compon
 The server side code for this project lives [here](https://github.com/burkeKoontz/poetry-remix-server).
 
 ## Tech Stack
+
 ### MERN
 * MongoDB
 * Express.js
 * React
 * Node.js
 
-### Other dependencies
+### Client-side dependencies
 * react-dnd
 * redux
 * redux-form
 * react-router
 * react-redux
+
+### Server-side dependencies
+* cors
+* passport
+* mongoose
+
 
 ## License
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
