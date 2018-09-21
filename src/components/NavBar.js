@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { clearCurrentPoem, closePoem} from '../actions/poem';
+import { clearCurrentPoem, closePoem, clearSuccess} from '../actions/poem';
 import { clearSearching } from '../actions/search';
 import { clearAuth } from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
@@ -14,6 +14,7 @@ class NavBar extends React.Component {
     this.props.dispatch(clearCurrentPoem());
     this.props.dispatch(closePoem());
     this.props.dispatch(clearMagnets());
+    this.props.dispatch(clearSuccess());
   }
 
   clearData() {

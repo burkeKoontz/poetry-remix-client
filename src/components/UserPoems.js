@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import UserPoem from './UserPoem';
-import { deletePoemByID, fetchUserPoemsFromDB, deletePoemFromState} from '../actions/poem';
+import { deletePoemByID, fetchUserPoemsFromDB, deletePoemFromState, clearSuccess} from '../actions/poem';
 
 class UserPoems extends React.Component {
 
@@ -10,6 +10,7 @@ class UserPoems extends React.Component {
     if (this.props.currentUser) {
       this.fetchPoems();
       }
+      this.props.dispatch(clearSuccess());
     }
 
   fetchPoems() {
