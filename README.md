@@ -1,6 +1,6 @@
 # Poetry Remix
+![A look at the application](https://user-images.githubusercontent.com/39100656/45902107-42e95000-bd9a-11e8-99e7-6a84edea6e1d.gif)
 
-![First lines of 'Heaven is So Far of the Mind' by Emily Dickinson](https://user-images.githubusercontent.com/39100656/45892075-f98a0800-bd7b-11e8-9209-204dadbe83ba.PNG)
 
 ## Introduction
 "Immature poets imitate; mature poets steal" - T.S. Eliot</p><p className="spaced centered"> To become a mature poet, a good thief, a bit of imitation is in order. 
@@ -15,24 +15,30 @@ Check out the application [here](https://poetry-remix-client.herokuapp.com/).
 ![Another look at the application](https://user-images.githubusercontent.com/39100656/45898630-5ba03880-bd8f-11e8-84ed-45ac59e27209.PNG)
 
 ## Key Parts of Project
-The most interesting parts of this project are located in the DragAndDrop component and the Magnet component. Each poem chosen to remix is split up into words that are dynamically placed on a drag and drop board,
-but line breaks in the original poem are maintained.
+The most interesting parts of this project are located in the DragAndDrop component and the Magnet component. Each poem chosen to remix is split up into words that are dynamically placed on a drag and drop board. Line breaks in the original poem are maintained.
 
 The server side code for this project lives [here](https://github.com/burkeKoontz/poetry-remix-server).
 
 ## Tech Stack
+
 ### MERN
 * MongoDB
 * Express.js
 * React
 * Node.js
 
-### Other dependencies
+### Client-side dependencies
 * react-dnd
 * redux
 * redux-form
 * react-router
 * react-redux
+
+### Server-side dependencies
+* cors
+* passport
+* mongoose
+
 
 ## License
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
