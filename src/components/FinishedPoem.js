@@ -17,7 +17,7 @@ class FinishedPoem extends React.Component {
   
     if (this.props.poem) {
       if (this.props.currentUser && this.props.currentUser.id === this.props.poem.userId) {
-         share =  <p className="centered">Share this poem with your friends! Just pass them this link: {`${CLIENT_BASE_URL}/poems/${this.props.poem.id}`}</p>
+         share =  <p className="centered spaced overflow">Share this poem with your friends! Just pass them this link: {`${CLIENT_BASE_URL}/poems/${this.props.poem.id}`}</p>
       }
       const { magnets } = this.props.poem;
       let height;

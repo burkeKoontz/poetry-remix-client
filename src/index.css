@@ -42,3 +42,24 @@ a:hover {
   text-align: center;
   font-size: 18px;
 }
+
+.mobileMessage {
+  display: none
+}
+
+.overflow {
+  overflow-wrap: break-word;
+}
+
+@media only screen and (max-width: 600px) {
+  .edit-board {
+    display: none;
+  }
+  .mobileMessage {
+    display: block;
+  }
+
+  .Cell {
+    width: 800px;
+  }
+}
