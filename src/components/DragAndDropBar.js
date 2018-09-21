@@ -28,10 +28,12 @@ class DragAndDropBar extends React.Component {
       const updatePoemBody = {title, magnets, userId: id, id: this.props.editingPoem.id};
       this.props.dispatch(updatePoem(updatePoemBody));
       this.goHome();
+      this.props.dispatch(clearSuccess());
     } else {
       const newPoem = {title, magnets, userId: id};
       this.props.dispatch(savePoemToDB(newPoem));
       this.goHome();
+      this.props.dispatch(clearSuccess());
     }
   }
 
@@ -43,12 +45,12 @@ class DragAndDropBar extends React.Component {
 
   render() {
     if (this.props.saveSuccess && !this.props.currentUser) {
-      this.props.dispatch(clearSuccess());
+      // this.props.dispatch(clearSuccess());
       return <Redirect to="/" />
     }
 
     if (this.props.updateSuccess || this.props.saveSuccess) {
-      this.props.dispatch(clearSuccess());
+      // this.props.dispatch(clearSuccess());
       return <Redirect to="/your-poems" />
     }
   
