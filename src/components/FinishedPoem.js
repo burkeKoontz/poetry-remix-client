@@ -24,7 +24,6 @@ class FinishedPoem extends React.Component {
       if (Object.keys(magnets).length) {
         let keyArray = Object.keys(magnets);
         height = keyArray.reduce((acc, key) => {
-          console.log(acc);
           return magnets[key].top > 300 ? magnets[key].top + 300 : acc;
         }, 300)
       }

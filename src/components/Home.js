@@ -4,7 +4,7 @@ import SearchResults from './SearchResults';
 import LandingPage from './LandingPage';
 import SearchForm from './SearchForm';
 import Poems from './Poems';
-import {fetchPoemsFromDB, clearSuccess} from '../actions/poem';
+import {fetchPoemsFromDB} from '../actions/poem';
 
 class Home extends React.Component {
 

@@ -26,9 +26,9 @@ class Poems extends React.Component {
         </div>
       );
     } else if (this.props.loading) {
-      return <p>Poems incoming</p>
+      return <p className="spaced">Poems incoming</p>
     } else {
-      return (<p>No poems stored on application</p>);
+      return (<p className="spaced">No poems stored...yet</p>);
     }
   }
 }

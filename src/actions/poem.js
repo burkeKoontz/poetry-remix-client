@@ -190,13 +190,11 @@ export function updatePoemError(err) {
 }
 
 export const deletePoemByID = (id) => dispatch => {
-  console.log(id);
   dispatch(deletePoemFromDBRequest());
    fetch(`${API_BASE_URL}/poems/${id}`, {
     method: "DELETE" 
     })
     .then(res => {
-      console.log(res);
       if (!res.ok) {
           return Promise.reject(res.statusText);
       }
@@ -206,7 +204,6 @@ export const deletePoemByID = (id) => dispatch => {
       dispatch(deletePoemFromDBSuccess());
     })
     .catch(err => {
-      console.log(err);
       dispatch(deletePoemFromDBError(err));
     })
 };

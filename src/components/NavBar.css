@@ -34,10 +34,11 @@ h1 {
     padding: 3px 7.5px;
     margin-bottom: 2px;
   }
+
 }
 
 nav {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: auto;
   border-top: 2px solid #555;
   border-left: 2px solid #555;

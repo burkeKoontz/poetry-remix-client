@@ -60,10 +60,10 @@ class DragAndDrop extends React.Component {
       xLocations = [];
       content.forEach((word, j) => {
         lastWordLength = j > 0 ? content[j-1].length : content[j].length;
-        lastXLocation = j > 0 ? xLocations[j-1] : 60;
+        lastXLocation = j > 0 ? xLocations[j-1] : 25;
         // xDifference varies based on the word length of the last word
         xDifference = windowWidth < 600 ?  2 * (lastWordLength) : 8 * (lastWordLength);
-        xLocation = j === 0 ? 60 : (lastXLocation + xDifference + 50);
+        xLocation = j === 0 ? 25 : (lastXLocation + xDifference + 50);
         xLocations.push(xLocation);
         yLocation = (60 * (i+1));
         const magnetObj = {lineNumber: i, content: content[j], xLocation, yLocation}
@@ -89,7 +89,6 @@ class DragAndDrop extends React.Component {
     if (Object.keys(magnets).length) {
       let keyArray = Object.keys(magnets);
       height = keyArray.reduce((acc, key) => {
-        console.log(acc);
         return magnets[key].top > 300 ? magnets[key].top + 300 : acc;
       }, 300)
     }

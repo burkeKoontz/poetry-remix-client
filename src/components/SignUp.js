@@ -8,10 +8,8 @@ import {nonEmpty, required, passwordLength, usernameLength, isTrimmed} from '../
 
 class SignUp extends React.Component {
   onSubmit(values){
-    console.log(values);
     // e.preventDefault();
     const newUser = {username: values.usernameSubmit, password: values.passwordSubmit};
-    console.log(newUser);
     return this.props.dispatch(saveUserToDB(newUser));
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setCurrentPoem, deletePoemByID, openPoem, fetchUserPoemsFromDB} from '../actions/poem';
+import {setCurrentPoem, openPoem} from '../actions/poem';
 import { Link } from 'react-router-dom';
 
 class UserPoem extends React.Component {
