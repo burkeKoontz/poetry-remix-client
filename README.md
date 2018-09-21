@@ -1,5 +1,5 @@
 # Poetry Remix
-![A look at the application](https://user-images.githubusercontent.com/39100656/45901786-0d903280-bd99-11e8-8f12-7a9abe9d025b.gif)
+![A look at the application](https://user-images.githubusercontent.com/39100656/45902107-42e95000-bd9a-11e8-99e7-6a84edea6e1d.gif)
 
 
 ## Introduction
