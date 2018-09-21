@@ -1,6 +1,6 @@
 # Poetry Remix
+![A look at the application](https://user-images.githubusercontent.com/39100656/45901786-0d903280-bd99-11e8-8f12-7a9abe9d025b.gif)
 
-![First lines of 'Heaven is So Far of the Mind' by Emily Dickinson](https://user-images.githubusercontent.com/39100656/45892075-f98a0800-bd7b-11e8-9209-204dadbe83ba.PNG)
 
 ## Introduction
 "Immature poets imitate; mature poets steal" - T.S. Eliot</p><p className="spaced centered"> To become a mature poet, a good thief, a bit of imitation is in order. 
