@@ -1,4 +1,4 @@
-import {composeWithDevTools} from 'redux-devtools-extension';
+// import {composeWithDevTools} from 'redux-devtools-extension';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {searchReducer} from './reducers/search';
 import {poemReducer} from './reducers/poem';
@@ -21,9 +21,13 @@ const rootReducer = combineReducers({
 
 
 // for dev
-const store = createStore(rootReducer, composeWithDevTools(
+// const store = createStore(rootReducer, composeWithDevTools(
+//   applyMiddleware(thunk)
+// ));
+
+const store = createStore(rootReducer, 
   applyMiddleware(thunk)
-));
+);
 
 const authToken = loadAuthToken();
 if (authToken) {
@@ -38,8 +42,3 @@ if (returningUser) {
 }
 
 export default store;
-
-
-// export const store = createStore(rootReducer, 
-//   applyMiddleware(thunk)
-// );

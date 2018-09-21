@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { savePoemToDB, updatePoem, clearCurrentPoem, closePoem, clearSuccess} from '../actions/poem';
+import { savePoemToDB, updatePoem, clearSuccess} from '../actions/poem';
 import {clearSearching} from '../actions/search';
 import {addMagnet, clearMagnets} from '../actions/magnet';
 import { Redirect } from 'react-router-dom';
@@ -13,7 +13,6 @@ class DragAndDropBar extends React.Component {
 
   goHome() {
     this.props.dispatch(clearSearching());
-    // this.props.dispatch(clearCurrentPoem());
     this.props.dispatch(clearMagnets());
   }
 
