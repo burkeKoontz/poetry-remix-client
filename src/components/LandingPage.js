@@ -18,7 +18,7 @@ class LandingPage extends React.Component {
           <button className="spaced button centeredBlock" onClick={() => this.notFirstTimeUser()}>Get started</button>
         </div>)
     } else {
-      return <Redirect to="/" />
+      return <Redirect to="/" />;
     }
   }
 }

@@ -62,4 +62,8 @@ a:hover {
   .Cell {
     width: 800px;
   }
+
+  .landing-img {
+    width: 90%;
+  }
 }

@@ -46,7 +46,7 @@ class DragAndDrop extends React.Component {
 
   createMagnets(lines) {
     const keyArray = Object.keys(lines);
-    const arrayofWords = []
+    const arrayofWords = [];
     let xLocation; // changes based on width of previous magnet
     let yLocation; // changes when line number of poem changes
     let lastWordLength;
@@ -82,8 +82,6 @@ class DragAndDrop extends React.Component {
   }
   
   render() {
-    const windowWidth = window.screen.availWidth;
-    const transform = windowWidth < 600 ? 'scale(.8, .8)' : null;
     let height;
     const { hideSourceOnDrag, connectDropTarget, magnets } = this.props;
     if (Object.keys(magnets).length) {
@@ -96,14 +94,13 @@ class DragAndDrop extends React.Component {
     connectDropTarget(
       <div style={{height}} className='Cell'>
         {Object.keys(magnets).map(key => {
-          const { left, top, title } = magnets[key]
+          const { left, top, title } = magnets[key];
           return (
             <Magnet
               key={key}
               id={key}
               left={left}
               top={top} 
-              transform={transform}
               hideSourceOnDrag={hideSourceOnDrag}
             >
             {title}

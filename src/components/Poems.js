@@ -18,7 +18,7 @@ class Poems extends React.Component {
             <p className="inline-block">{`Title: ${poem.title}`}</p>
             <Link className="inline-block" onClick={() => this.seePoem(poem)} to={`/poems/${poem.id}`} >Check out {poem.title}</Link>
           </li>);
-      });
+        });
       return (
         <div>
         <h2 className="centered">Poems by other users: </h2>
@@ -28,7 +28,7 @@ class Poems extends React.Component {
     } else if (this.props.loading) {
       return <p className="spaced">Poems incoming</p>
     } else {
-      return (<p className="spaced">No poems stored...yet</p>);
+      return <p className="spaced">No poems stored...yet</p>;
     }
   }
 }

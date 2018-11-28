@@ -17,5 +17,4 @@ class SearchResult extends React.Component {
   }
 }
 
-
 export default connect()(SearchResult);
