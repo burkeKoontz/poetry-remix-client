@@ -8,6 +8,14 @@
  This application uses [PoetryDB](https://github.com/thundercomb/poetrydb) to search for public domain poetry.
 
 ## See for yourself
+
+Don't want to register? 
+Log in with this demo user.
+
+username: demo
+
+password: demoUser1234
+
 Check out the application [here](https://poetry-remix-client.herokuapp.com/).
 
 ![A look at the application](https://user-images.githubusercontent.com/39100656/45892094-04449d00-bd7c-11e8-9e56-2a5b75898f10.PNG)
