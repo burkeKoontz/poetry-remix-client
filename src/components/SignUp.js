@@ -34,7 +34,7 @@ class SignUp extends React.Component {
             <label htmlFor='usernameSubmit'>Username</label>
             <Field name="usernameSubmit" id="usernameSubmit" type="text" component={Input} validate={[ required, nonEmpty, usernameLength, isTrimmed]} />
             <label htmlFor='passwordSubmit'>Password</label>
-            <Field name="passwordSubmit" id="passwordSubmit" type="text" component={Input} validate={[ required, nonEmpty, passwordLength, isTrimmed]} />
+            <Field name="passwordSubmit" id="passwordSubmit" type="password" component={Input} validate={[ required, nonEmpty, passwordLength, isTrimmed]} />
             <button className="button spaced" disabled={this.props.pristine || this.props.submitting} type="submit">Sign-Up</button>
           </form>
         </main>

@@ -50,7 +50,7 @@ class LogIn extends React.Component {
             <label htmlFor='username'>Username</label>
             <Field name="username" id="username" type="text" component={Input} validate={[required]} />
             <label htmlFor='password'>Password</label>
-            <Field name="password" id="password" type="text" component={Input} validate={[required]} />
+            <Field name="password" id="password" type="password" component={Input} validate={[required]} />
             <button className="button spaced" disabled={this.props.pristine || this.props.submitting} type="submit">Log-In</button>
           </form>
         </main>
