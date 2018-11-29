@@ -286,16 +286,18 @@ export const savePoemToDB = (newPoem) => dispatch => {
     })
 };
 
-export const updatePoem = (updatePoem) => dispatch => {
+export const updatePoem = (updatePoem) => (dispatch, getState) => {
   const keyArray = Object.keys(updatePoem.magnets);
   const magnets = keyArray.map(key => updatePoem.magnets[key])
+  const authToken = getState().auth.authToken;
 
-  const updateBody = {title: updatePoem.title, magnets, id: updatePoem.id}
+  const updateBody = {userId: updatePoem.userId, title: updatePoem.title, magnets, id: updatePoem.id}
   dispatch(updatePoemRequest());
    fetch(`${API_BASE_URL}/poems/${updatePoem.id}`, {
     method: "PUT",
     headers: {
         "Content-Type": "application/json; charset=utf-8",
+        Authorization: `Bearer ${authToken}`
     },
     body: JSON.stringify(updateBody),
 })

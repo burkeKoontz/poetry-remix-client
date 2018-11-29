@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "jwt-decode": "^2.2.0",
+    "merge": "^1.2.1",
     "react": "^16.5.0",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.1",
