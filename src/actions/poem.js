@@ -189,10 +189,14 @@ export function updatePoemError(err) {
   };
 }
 
-export const deletePoemByID = (id) => dispatch => {
+export const deletePoemByID = (id) => (dispatch, getState) => {
   dispatch(deletePoemFromDBRequest());
+  const authToken = getState().auth.authToken;
    fetch(`${API_BASE_URL}/poems/${id}`, {
-    method: "DELETE" 
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${authToken}`
+  }
     })
     .then(res => {
       if (!res.ok) {
