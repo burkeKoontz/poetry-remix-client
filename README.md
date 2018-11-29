@@ -47,6 +47,11 @@ The server side code for this project lives [here](https://github.com/burkeKoont
 * passport
 * mongoose
 
+## API Documentation
+
+[Click to view API Documentation](https://documenter.getpostman.com/view/4934035/Rzfdoq1A)
+
+
 
 ## License
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
