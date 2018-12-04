@@ -42,7 +42,7 @@ class LogIn extends React.Component {
         );
     }
         return (<main aria-live="assertive" role="main" className="centered">
-        <div class="bg"></div>
+        <div className="bg"></div>
           <h2>Log-In</h2>
           <form name="log-in-form"  className="spaced" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>

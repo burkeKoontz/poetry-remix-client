@@ -36,15 +36,15 @@ class UserPoems extends React.Component {
     });
     return (
         <main aria-live="assertive" role="main">
-        <div class="bg"></div>
+        <div className="bg"></div>
           <h2 className="spaced">Your poems:</h2>
           <ul>{poemsHtml}</ul>
         </main>
     );
   } else if (this.props.loading) {
-    return <main aria-live="polite" role="main"><div class="bg"></div><p className="spaced">Poems incoming</p></main>;
+    return <main aria-live="polite" role="main"><div className="bg"></div><p className="spaced">Poems incoming</p></main>;
   } else {
-    return (<main aria-live="polite" role="main"><div class="bg"></div><p className="spaced">You haven't created any poems yet</p></main>);
+    return (<main aria-live="polite" role="main"><div className="bg"></div><p className="spaced">You haven't created any poems yet</p></main>);
   }
 } 
 }

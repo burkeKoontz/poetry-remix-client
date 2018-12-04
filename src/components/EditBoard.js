@@ -10,7 +10,7 @@ class EditBoard extends React.Component {
     if (this.props.editingPoem) {
       return (
         <main role="main">
-        <div class="bg"></div>
+        <div className="bg"></div>
         <p className="spaced mobileMessage">Editing and creating poems is not available on mobile at this time.</p>
           <div className="edit-board">
           <DragAndDropBar />

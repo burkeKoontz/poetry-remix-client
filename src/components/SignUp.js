@@ -26,7 +26,7 @@ class SignUp extends React.Component {
         );
     }
         return (<main aria-live="assertive" role="main" className="centered">
-        <div class="bg"></div>
+        <div className="bg"></div>
           <h2>Sign-up</h2>
           <form className="spaced" name="sign-up-form" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>
