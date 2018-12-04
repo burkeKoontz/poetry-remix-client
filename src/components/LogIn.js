@@ -42,6 +42,7 @@ class LogIn extends React.Component {
         );
     }
         return (<main aria-live="assertive" role="main" className="centered">
+        <div class="bg"></div>
           <h2>Log-In</h2>
           <form name="log-in-form"  className="spaced" onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values))}>
@@ -53,6 +54,7 @@ class LogIn extends React.Component {
             <Field name="password" id="password" type="password" component={Input} validate={[required]} />
             <button className="button spaced" disabled={this.props.pristine || this.props.submitting} type="submit">Log-In</button>
           </form>
+          <p>Or try our demo user:</p><p>Username: demo <br /> Password: demoUser1234</p>
         </main>
     );
   }

@@ -29,6 +29,7 @@ class FinishedPoem extends React.Component {
       }
       return (
         <main aria-live="assertive" role="main">
+        <div class="bg"></div>
           <p className="centered">Title: {this.props.poem.title}</p>
           {share}
           <div style={{height}} className='Cell'>
@@ -49,7 +50,7 @@ class FinishedPoem extends React.Component {
         </main>
       );
     } else {
-      return <main aria-live="polite" role="main"><p className="spaced">Loading</p></main>
+      return <main aria-live="polite" role="main"><div class="bg"></div><p className="spaced">Loading</p></main>
     }
 }
 }

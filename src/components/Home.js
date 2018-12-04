@@ -14,11 +14,12 @@ class Home extends React.Component {
 
   render() {
     if (!this.props.returningUser) {
-      return <main role="main"><LandingPage /></main>;
+      return <main role="main"><div class="bg"></div><LandingPage /></main>;
     }
     if (this.props.searching) {
       return (
         <main aria-live="assertive" role="main">
+        <div class="bg"></div>
           <SearchForm />
           <SearchResults />
         </main>
@@ -26,6 +27,7 @@ class Home extends React.Component {
     } else {
       return (
         <main aria-live="assertive" role="main">
+          <div class="bg"></div>
           <SearchForm />
           <Poems />
         </main>

@@ -6,7 +6,7 @@ body {
   font-family: 'Cormorant Garamond', serif;
   line-height: 1.5;
   padding: 4em 1em;
-  color: #555;
+  color: #333333;
   font-size: 18px;
 }
 
@@ -14,6 +14,21 @@ main {
   max-width: 1400px;
   margin: auto;
   border: 2px solid #555;
+  position: relative;
+  z-index: 1;
+}
+
+.bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url("images/background.jpg") center center;
+  opacity: .15;
+  background-size: contain;
+  box-shadow: 0 0 0 0 white inset;
 }
 
 a {
